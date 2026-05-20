@@ -7,27 +7,28 @@
 <meta name="description" content="Auditoría CRO de dormideo.com nivel a nivel (Home, PLP, PDP, Packs, Carrito, Trust) basada en la metodología Billion Dollar Websites de Dylan Ander.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf8f4;
-    --ink: #1a1a1a;
-    --ink-soft: #4a4a4a;
-    --ink-faint: #8a8a8a;
-    --line: #1a1a1a;
-    --line-soft: #d8d4cc;
-    --accent: #c9a44a;
-    --accent-soft: #f4ecd6;
-    --gold: #E8D49A;
+    --bg: #faf6e6;          /* dormideo cream */
     --paper: #fffefb;
-    --red: #a8362f;
-    --green: #2d5a3d;
-    --amber: #b07a1e;
+    --ink: #010003;         /* dormideo near-black */
+    --ink-soft: #3a3d52;
+    --ink-faint: #828282;   /* dormideo gray */
+    --line: #010003;
+    --line-soft: #e5dfc7;
+    --accent: #108474;      /* dormideo teal (primary brand) */
+    --accent-soft: #E0EFDC; /* dormideo mint */
+    --navy: #232a7c;        /* dormideo navy (secondary brand) */
+    --gold: #fad055;        /* dormideo mustard (badges/promo) */
+    --red: #e41212;         /* dormideo red (sale/critical) */
+    --green: #108474;       /* reuse teal for "strong" status */
+    --amber: #c87a1e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Inter Tight', -apple-system, sans-serif;
+    font-family: 'Archivo', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--ink);
     line-height: 1.65;
@@ -45,16 +46,16 @@
     text-transform: uppercase; letter-spacing: 1.5px;
     color: var(--ink-faint); margin-bottom: 60px;
   }
-  .hero-meta .left { color: var(--amber); }
+  .hero-meta .left { color: var(--accent); }
   .hero h1 {
-    font-family: 'Fraunces', serif; font-weight: 300;
+    font-family: 'Archivo', sans-serif; font-weight: 300;
     font-size: clamp(44px, 7vw, 88px);
     line-height: 0.98; letter-spacing: -0.03em;
     margin-bottom: 28px; font-variation-settings: "opsz" 144;
   }
-  .hero h1 em { font-style: italic; font-weight: 400; color: var(--amber); }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
   .hero-subtitle {
-    font-family: 'Fraunces', serif; font-style: italic;
+    font-family: 'Archivo', sans-serif; font-style: italic;
     font-weight: 300; font-size: 22px; color: var(--ink-soft);
     max-width: 720px; line-height: 1.4;
   }
@@ -89,10 +90,10 @@
   }
   .index li a {
     color: var(--ink); text-decoration: none;
-    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400;
+    font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 400;
     flex: 1; transition: color 0.2s;
   }
-  .index li a:hover { color: var(--amber); }
+  .index li a:hover { color: var(--accent); }
   .index li .pages {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
     color: var(--ink-faint);
@@ -102,30 +103,30 @@
   section { padding: 80px 0 60px; border-bottom: 1px solid var(--line-soft); }
   .section-num {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--amber); letter-spacing: 2px;
+    color: var(--accent); letter-spacing: 2px;
     margin-bottom: 16px; display: block;
   }
   .section h2 {
-    font-family: 'Fraunces', serif; font-weight: 400;
+    font-family: 'Archivo', sans-serif; font-weight: 400;
     font-size: clamp(32px, 4.5vw, 52px);
     line-height: 1.05; letter-spacing: -0.02em;
     margin-bottom: 24px; font-variation-settings: "opsz" 100;
   }
-  .section h2 em { font-style: italic; color: var(--amber); }
+  .section h2 em { font-style: italic; color: var(--accent); }
   .section .lead {
-    font-family: 'Fraunces', serif; font-style: italic;
+    font-family: 'Archivo', sans-serif; font-style: italic;
     font-weight: 300; font-size: 21px; line-height: 1.45;
     color: var(--ink-soft); max-width: 740px;
-    margin-bottom: 40px; border-left: 2px solid var(--gold);
+    margin-bottom: 40px; border-left: 3px solid var(--accent);
     padding-left: 24px;
   }
   .section h3 {
-    font-family: 'Fraunces', serif; font-weight: 500;
+    font-family: 'Archivo', sans-serif; font-weight: 500;
     font-size: 26px; line-height: 1.2;
     margin: 44px 0 14px; letter-spacing: -0.01em;
   }
   .section h4 {
-    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-family: 'Archivo', sans-serif; font-weight: 600;
     font-size: 13px; text-transform: uppercase;
     letter-spacing: 1.5px; color: var(--ink-faint);
     margin: 28px 0 12px;
@@ -141,15 +142,15 @@
   .gator-verdict {
     background: var(--paper);
     border: 1px solid var(--line-soft);
-    border-left: 4px solid var(--amber);
+    border-left: 4px solid var(--accent);
     padding: 28px 32px;
     margin: 24px 0 40px;
-    font-family: 'Fraunces', serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 18px;
     line-height: 1.55;
     color: var(--ink);
   }
-  .gator-verdict strong { color: var(--amber); }
+  .gator-verdict strong { color: var(--accent); }
 
   .critical-finding {
     background: #fdf5f3;
@@ -189,7 +190,7 @@
   td:first-child { font-weight: 500; color: var(--ink); }
 
   .status-strong { color: var(--green); font-weight: 600; }
-  .status-mid { color: var(--amber); font-weight: 600; }
+  .status-mid { color: var(--accent); font-weight: 600; }
   .status-critical { color: var(--red); font-weight: 600; }
 
   /* PRIORITY ITEMS */
@@ -202,9 +203,9 @@
     position: relative;
   }
   .priority.crit { border-left: 4px solid var(--red); }
-  .priority.mid { border-left: 4px solid var(--amber); }
+  .priority.mid { border-left: 4px solid var(--accent); }
   .priority h4 {
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 17px;
     font-weight: 600;
     text-transform: none;
@@ -236,12 +237,12 @@
 
   /* QUOTE */
   blockquote {
-    font-family: 'Fraunces', serif;
+    font-family: 'Archivo', sans-serif;
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 20px;
     color: var(--ink-soft);
-    border-left: 3px solid var(--gold);
+    border-left: 3px solid var(--accent);
     padding: 8px 0 8px 24px;
     margin: 24px 0;
     line-height: 1.5;
@@ -307,7 +308,7 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-  .toc-floating a:hover { color: var(--amber); }
+  .toc-floating a:hover { color: var(--accent); }
   @media (max-width: 1280px) {
     .toc-floating { display: none; }
   }
@@ -323,7 +324,7 @@
     letter-spacing: 1.5px;
   }
   footer .wordmark {
-    font-family: 'Fraunces', serif;
+    font-family: 'Archivo', sans-serif;
     font-size: 24px;
     text-transform: none;
     letter-spacing: 0;
@@ -332,7 +333,7 @@
     font-weight: 400;
   }
   footer .wordmark b { font-weight: 700; }
-  footer a { color: var(--amber); text-decoration: none; }
+  footer a { color: var(--accent); text-decoration: none; }
 
   /* MOBILE */
   @media (max-width: 720px) {
