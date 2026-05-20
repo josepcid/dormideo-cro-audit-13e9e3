@@ -3,27 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dormideo · Auditoría CRO por nivel</title>
-<meta name="description" content="Auditoría CRO de dormideo.com nivel a nivel (Home, PLP, PDP, Packs, Carrito, Trust) basada en la metodología Billion Dollar Websites de Dylan Ander.">
+<title>Dormideo · Auditoría CRO</title>
+<meta name="description" content="Auditoría CRO de dormideo.com — hallazgos críticos, scorecard por nivel y roadmap de 4 semanas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ffffff;          /* dormideo white */
-    --paper: #f9fafb;       /* near-white card */
-    --ink: #121212;         /* dormideo near-black */
+    --bg: #ffffff;
+    --paper: #f7f8fb;
+    --ink: #121212;
     --ink-soft: #4a4a4a;
-    --ink-faint: #828282;   /* dormideo gray */
+    --ink-faint: #828282;
     --line: #121212;
     --line-soft: #e5e7eb;
-    --accent: #2d36c8;      /* dormideo cobalt blue (primary brand, matches CTAs) */
-    --accent-deep: #2d307a; /* darker navy for hover/contrast */
-    --accent-soft: #edf2fb; /* light blue tint */
-    --gold: #fad055;        /* dormideo mustard (promo badges) */
-    --red: #e41212;         /* dormideo red (sale/critical) */
-    --green: #1e9b6e;       /* true green for "strong" status */
+    --brand: #2d36c8;       /* dormideo cobalt */
+    --brand-deep: #2d307a;
+    --brand-soft: #edf2fb;
+    --gold: #fad055;
+    --red: #e41212;
+    --red-soft: #fdecec;
     --amber: #c87a1e;
+    --amber-soft: #fdf3e5;
+    --green: #1e9b6e;
+    --green-soft: #e7f6ef;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -31,1186 +34,539 @@
     font-family: 'Archivo', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--ink);
-    line-height: 1.65;
-    font-size: 16px;
-    font-weight: 400;
+    line-height: 1.55;
+    font-size: 15px;
     -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
   /* HERO */
-  .hero { border-bottom: 1px solid var(--line); padding: 80px 0 60px; }
+  .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
   .hero-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--brand); margin-bottom: 24px;
     display: flex; justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    color: var(--ink-faint); margin-bottom: 60px;
   }
-  .hero-meta .left { color: var(--accent); }
+  .hero-meta .right { color: var(--ink-faint); }
   .hero h1 {
-    font-family: 'Archivo', sans-serif; font-weight: 300;
-    font-size: clamp(44px, 7vw, 88px);
-    line-height: 0.98; letter-spacing: -0.03em;
-    margin-bottom: 28px; font-variation-settings: "opsz" 144;
+    font-size: clamp(36px, 5.5vw, 56px);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 16px;
   }
-  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-  .hero-subtitle {
-    font-family: 'Archivo', sans-serif; font-style: italic;
-    font-weight: 300; font-size: 22px; color: var(--ink-soft);
-    max-width: 720px; line-height: 1.4;
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .tldr {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 720px; margin-top: 20px;
   }
-  .hero-info {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-    margin-top: 60px; padding-top: 40px;
-    border-top: 1px solid var(--line-soft);
-  }
-  .hero-info-item .label {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    color: var(--ink-faint); margin-bottom: 8px; display: block;
-  }
-  .hero-info-item .value { font-size: 14px; color: var(--ink); font-weight: 500; }
+  .hero .tldr strong { color: var(--ink); font-weight: 600; }
 
-  /* INDEX */
-  .index { padding: 60px 0; border-bottom: 1px solid var(--line-soft); }
-  .index-title {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 2px;
-    color: var(--ink-faint); margin-bottom: 32px;
+  /* IMPACT CHIPS */
+  .impact {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-top: 32px;
   }
-  .index ol { list-style: none; counter-reset: idx; }
-  .index li {
-    counter-increment: idx; display: flex; align-items: baseline;
-    padding: 14px 0; border-bottom: 1px dashed var(--line-soft);
+  .impact-chip {
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-soft);
+    border-left: 3px solid var(--brand);
+    padding: 14px 16px;
   }
-  .index li::before {
-    content: counter(idx, decimal-leading-zero);
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--ink-faint); margin-right: 24px; min-width: 32px;
-  }
-  .index li a {
-    color: var(--ink); text-decoration: none;
-    font-family: 'Archivo', sans-serif; font-size: 22px; font-weight: 400;
-    flex: 1; transition: color 0.2s;
-  }
-  .index li a:hover { color: var(--accent); }
-  .index li .pages {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--ink-faint);
-  }
-
-  /* SECTIONS */
-  section { padding: 80px 0 60px; border-bottom: 1px solid var(--line-soft); }
-  .section-num {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--accent); letter-spacing: 2px;
-    margin-bottom: 16px; display: block;
-  }
-  .section h2 {
-    font-family: 'Archivo', sans-serif; font-weight: 400;
-    font-size: clamp(32px, 4.5vw, 52px);
-    line-height: 1.05; letter-spacing: -0.02em;
-    margin-bottom: 24px; font-variation-settings: "opsz" 100;
-  }
-  .section h2 em { font-style: italic; color: var(--accent); }
-  .section .lead {
-    font-family: 'Archivo', sans-serif; font-style: italic;
-    font-weight: 300; font-size: 21px; line-height: 1.45;
-    color: var(--ink-soft); max-width: 740px;
-    margin-bottom: 40px; border-left: 3px solid var(--accent);
-    padding-left: 24px;
-  }
-  .section h3 {
-    font-family: 'Archivo', sans-serif; font-weight: 500;
-    font-size: 26px; line-height: 1.2;
-    margin: 44px 0 14px; letter-spacing: -0.01em;
-  }
-  .section h4 {
-    font-family: 'Archivo', sans-serif; font-weight: 600;
-    font-size: 13px; text-transform: uppercase;
-    letter-spacing: 1.5px; color: var(--ink-faint);
-    margin: 28px 0 12px;
-  }
-  .section p { margin-bottom: 16px; color: var(--ink-soft); }
-  .section p strong, .section li strong { color: var(--ink); font-weight: 600; }
-  .section ul, .section ol {
-    margin: 12px 0 20px 24px; color: var(--ink-soft);
-  }
-  .section li { margin-bottom: 10px; line-height: 1.55; }
-
-  /* CALLOUTS */
-  .gator-verdict {
-    background: var(--paper);
-    border: 1px solid var(--line-soft);
-    border-left: 4px solid var(--accent);
-    padding: 28px 32px;
-    margin: 24px 0 40px;
-    font-family: 'Archivo', sans-serif;
-    font-size: 18px;
-    line-height: 1.55;
-    color: var(--ink);
-  }
-  .gator-verdict strong { color: var(--accent); }
-
-  .critical-finding {
-    background: #fdf5f3;
-    border: 1px solid #e8c9c5;
-    border-left: 4px solid var(--red);
-    padding: 24px 28px;
-    margin: 24px 0;
-    border-radius: 2px;
-  }
-  .critical-finding h4 { color: var(--red); margin-top: 0; }
-
-  /* TABLES */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 24px 0 32px;
-    font-size: 15px;
-  }
-  th {
-    text-align: left;
+  .impact-chip .num {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--ink-faint);
-    padding: 12px 16px 12px 0;
+    font-size: 22px; font-weight: 600; color: var(--brand);
+    display: block; line-height: 1;
+  }
+  .impact-chip .lbl {
+    font-size: 12px; color: var(--ink-soft);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-top: 6px; display: block;
+  }
+  @media (max-width: 640px) {
+    .impact { grid-template-columns: 1fr; }
+  }
+
+  /* SECTION */
+  section { padding: 48px 0; border-bottom: 1px solid var(--line-soft); }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--brand); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8px; display: block;
+  }
+  h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 12px; line-height: 1.15;
+  }
+  h2 em { font-style: normal; color: var(--brand); }
+  .sub {
+    color: var(--ink-soft); font-size: 16px;
+    max-width: 720px; margin-bottom: 28px;
+  }
+
+  /* SCORECARD GRID */
+  .scorecard {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .score-cell {
+    background: var(--paper);
+    padding: 14px 16px;
+    border-left: 3px solid var(--line-soft);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .score-cell.crit { border-left-color: var(--red); background: var(--red-soft); }
+  .score-cell.mid { border-left-color: var(--amber); background: var(--amber-soft); }
+  .score-cell.ok { border-left-color: var(--green); background: var(--green-soft); }
+  .score-cell .lvl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--ink-faint);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .score-cell .nm { font-weight: 700; font-size: 15px; }
+  .score-cell .st {
+    font-size: 12px; font-weight: 600; margin-top: 4px;
+  }
+  .score-cell.crit .st { color: var(--red); }
+  .score-cell.mid .st { color: var(--amber); }
+  .score-cell.ok .st { color: var(--green); }
+  @media (max-width: 900px) {
+    .scorecard { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .scorecard { grid-template-columns: 1fr; }
+  }
+
+  /* FINDINGS TABLE */
+  .findings { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .findings thead {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
+  }
+  .findings th {
+    text-align: left; padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--ink-faint);
     font-weight: 500;
   }
-  td {
-    padding: 14px 16px 14px 0;
+  .findings td {
+    padding: 14px 12px;
     border-bottom: 1px solid var(--line-soft);
     vertical-align: top;
     color: var(--ink-soft);
   }
-  td strong { color: var(--ink); }
-  td:first-child { font-weight: 500; color: var(--ink); }
+  .findings td.sev {
+    width: 70px; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .findings td.sev.crit { color: var(--red); }
+  .findings td.sev.mid { color: var(--amber); }
+  .findings td.lvl {
+    width: 110px; color: var(--brand); font-weight: 600;
+  }
+  .findings td.what { color: var(--ink); font-weight: 500; }
+  .findings td.fix { color: var(--ink-soft); }
+  .findings tr:hover { background: var(--paper); }
+  @media (max-width: 720px) {
+    .findings, .findings tbody, .findings tr, .findings td {
+      display: block; width: 100%;
+    }
+    .findings thead { display: none; }
+    .findings td { padding: 4px 0; border: none; }
+    .findings tr {
+      padding: 16px 0; border-bottom: 1px solid var(--line-soft);
+    }
+    .findings td.sev::before { content: attr(data-sev); }
+    .findings td.lvl { font-size: 11px; text-transform: uppercase; }
+    .findings td.what { font-size: 16px; margin: 4px 0; }
+  }
 
-  .status-strong { color: var(--green); font-weight: 600; }
-  .status-mid { color: var(--accent); font-weight: 600; }
-  .status-critical { color: var(--red); font-weight: 600; }
-
-  /* PRIORITY ITEMS */
-  .priority {
+  /* ROADMAP */
+  .roadmap {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin-top: 24px;
+  }
+  .week {
     background: var(--paper);
-    border: 1px solid var(--line-soft);
+    border-top: 3px solid var(--brand);
+    padding: 18px 18px 22px;
+  }
+  .week .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--brand);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .week .name { font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+  .week ul { list-style: none; padding: 0; }
+  .week li {
+    font-size: 13px; color: var(--ink-soft);
+    padding: 6px 0; border-top: 1px dashed var(--line-soft);
+    line-height: 1.4;
+  }
+  .week li:first-child { border-top: none; }
+  @media (max-width: 900px) {
+    .roadmap { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) {
+    .roadmap { grid-template-columns: 1fr; }
+  }
+
+  /* METHOD BOX */
+  .method-box {
+    background: var(--paper);
     padding: 24px 28px;
-    margin: 16px 0;
-    border-radius: 2px;
-    position: relative;
+    border-left: 3px solid var(--brand);
+    margin-top: 20px;
   }
-  .priority.crit { border-left: 4px solid var(--red); }
-  .priority.mid { border-left: 4px solid var(--accent); }
-  .priority h4 {
-    font-family: 'Archivo', sans-serif;
-    font-size: 17px;
-    font-weight: 600;
-    text-transform: none;
-    letter-spacing: 0;
-    color: var(--ink);
-    margin: 0 0 12px;
-  }
-  .priority .meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--ink-faint);
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--line-soft);
-  }
-  .priority .meta span { margin-right: 18px; }
-  .priority .label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--ink-faint);
-    margin-bottom: 4px;
-    display: block;
-  }
-  .priority p { margin-bottom: 10px; }
-
-  /* QUOTE */
-  blockquote {
-    font-family: 'Archivo', sans-serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 20px;
-    color: var(--ink-soft);
-    border-left: 3px solid var(--accent);
-    padding: 8px 0 8px 24px;
-    margin: 24px 0;
-    line-height: 1.5;
-  }
-
-  /* SCORECARD */
-  .scorecard {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin: 32px 0;
-  }
-  .score-row {
-    display: grid;
-    grid-template-columns: 200px 1fr 120px;
-    align-items: center;
-    padding: 16px 20px;
-    background: var(--paper);
-    border: 1px solid var(--line-soft);
-    gap: 16px;
-  }
-  .score-row .name { font-weight: 500; color: var(--ink); }
-  .score-row .desc { color: var(--ink-faint); font-size: 14px; }
-  .score-row .badge {
-    text-align: right;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  /* TOC FLOATING */
-  .toc-floating {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 24px;
-    background: var(--paper);
-    border: 1px solid var(--line-soft);
-    padding: 18px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    max-width: 200px;
-  }
-  .toc-floating .title {
-    color: var(--ink-faint);
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--line-soft);
-  }
-  .toc-floating ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .toc-floating li {
-    margin: 6px 0;
-  }
-  .toc-floating a {
-    color: var(--ink-soft);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .toc-floating a:hover { color: var(--accent); }
-  @media (max-width: 1280px) {
-    .toc-floating { display: none; }
-  }
+  .method-box p { color: var(--ink-soft); margin-bottom: 10px; }
+  .method-box strong { color: var(--ink); }
 
   /* FOOTER */
   footer {
-    padding: 80px 0 60px;
-    text-align: center;
+    padding: 48px 0; text-align: center;
     color: var(--ink-faint);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
+    font-size: 11px; text-transform: uppercase;
     letter-spacing: 1.5px;
   }
-  footer .wordmark {
+  footer .wm {
     font-family: 'Archivo', sans-serif;
-    font-size: 24px;
-    text-transform: none;
-    letter-spacing: 0;
-    color: var(--ink);
-    margin-bottom: 12px;
-    font-weight: 400;
+    font-size: 20px; text-transform: none;
+    letter-spacing: 0; color: var(--ink);
+    margin-bottom: 8px; font-weight: 500;
   }
-  footer .wordmark b { font-weight: 700; }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer .wm b { font-weight: 800; }
 
-  /* MOBILE */
   @media (max-width: 720px) {
-    .container { padding: 0 24px; }
-    .hero { padding: 48px 0 40px; }
-    .hero-info { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .hero-meta { flex-direction: column; gap: 6px; margin-bottom: 32px; }
-    section { padding: 56px 0 40px; }
-    .score-row {
-      grid-template-columns: 1fr;
-      gap: 6px;
-    }
-    .score-row .badge { text-align: left; }
-    table, thead, tbody, th, td, tr {
-      display: block;
-    }
-    th { display: none; }
-    td {
-      padding: 6px 0;
-      border: none;
-    }
-    tr {
-      border-bottom: 1px solid var(--line-soft);
-      padding: 14px 0;
-    }
-    td:first-child { font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+    .container { padding: 0 20px; }
+    .hero { padding: 40px 0 32px; }
+    section { padding: 36px 0; }
   }
 </style>
 </head>
 <body>
 
-<nav class="toc-floating">
-  <div class="title">Índice</div>
-  <ol>
-    <li><a href="#verdict">00 · Veredicto</a></li>
-    <li><a href="#method">01 · Método</a></li>
-    <li><a href="#home">02 · Homepage</a></li>
-    <li><a href="#plp">03 · PLP Colchones</a></li>
-    <li><a href="#pdp-mattress">04 · PDP Colchón</a></li>
-    <li><a href="#pdp-sofa">05 · PDP Sofá</a></li>
-    <li><a href="#almohadas">06 · Almohadas</a></li>
-    <li><a href="#ropa-cama">07 · Ropa de cama</a></li>
-    <li><a href="#packs">08 · Packs</a></li>
-    <li><a href="#cart">09 · Carrito</a></li>
-    <li><a href="#trust">10 · Trust</a></li>
-    <li><a href="#roadmap">11 · Roadmap</a></li>
-  </ol>
-</nav>
-
 <header class="hero">
   <div class="container">
     <div class="hero-meta">
-      <span class="left">Auditoría CRO · Confidencial</span>
-      <span>Mayo 2026</span>
+      <span>Auditoría CRO · Dormideo</span>
+      <span class="right">Mayo 2026</span>
     </div>
-    <h1>Dormideo<br><em>tiene los activos.<br>Lo que falla es la escenificación.</em></h1>
-    <p class="hero-subtitle">Auditoría nivel a nivel de dormideo.com bajo la metodología <em>Billion Dollar Websites</em> de Dylan Ander. 250.000 clientes, fábrica propia, 4,8★ con miles de reseñas — y un funnel que está dejando dinero sobre la mesa en cada paso.</p>
-    <div class="hero-info">
-      <div class="hero-info-item">
-        <span class="label">Cliente</span>
-        <span class="value">Dormideo</span>
+    <h1>Tienen los activos.<br><em>Falla la escenificación.</em></h1>
+    <p class="tldr">
+      <strong>250.000 clientes, fábrica propia, 4,8★, 24/72h.</strong> Y un funnel que pierde dinero en cada paso: home que vende rebaja en vez de descanso, PDPs con dropdown de 29 tallas, página de Packs vacía, devolución que contradice la promesa, ropa de cama con 4 productos.
+    </p>
+    <div class="impact">
+      <div class="impact-chip">
+        <span class="num">+15-25%</span>
+        <span class="lbl">CVR home → checkout</span>
       </div>
-      <div class="hero-info-item">
-        <span class="label">URL</span>
-        <span class="value">dormideo.com</span>
+      <div class="impact-chip">
+        <span class="num">+20-40€</span>
+        <span class="lbl">AOV</span>
       </div>
-      <div class="hero-info-item">
-        <span class="label">Método</span>
-        <span class="value">Billion Dollar Websites</span>
-      </div>
-      <div class="hero-info-item">
-        <span class="label">Auditor</span>
-        <span class="value">Josep Cid</span>
+      <div class="impact-chip">
+        <span class="num">+10-15%</span>
+        <span class="lbl">LTV</span>
       </div>
     </div>
   </div>
 </header>
 
-<div class="index">
+<!-- SCORECARD -->
+<section>
   <div class="container">
-    <div class="index-title">Contenido</div>
-    <ol>
-      <li><a href="#verdict">Veredicto ejecutivo</a><span class="pages">00</span></li>
-      <li><a href="#method">El método — Gator & Judge, Five Pillars, Quadrants</a><span class="pages">01</span></li>
-      <li><a href="#home">Nivel 1 — Homepage</a><span class="pages">02</span></li>
-      <li><a href="#plp">Nivel 2 — PLP Colchones</a><span class="pages">03</span></li>
-      <li><a href="#pdp-mattress">Nivel 3a — PDP Colchón (City Luxury)</a><span class="pages">04</span></li>
-      <li><a href="#pdp-sofa">Nivel 3b — PDP Sofá (Lea)</a><span class="pages">05</span></li>
-      <li><a href="#almohadas">Nivel 4 — Almohadas (PLP + PDP)</a><span class="pages">06</span></li>
-      <li><a href="#ropa-cama">Nivel 5 — Ropa de cama (PLP + PDP)</a><span class="pages">07</span></li>
-      <li><a href="#packs">Nivel 6 — Packs / Bundles</a><span class="pages">08</span></li>
-      <li><a href="#cart">Nivel 7 — Carrito</a><span class="pages">09</span></li>
-      <li><a href="#trust">Nivel 8 — Trust & Políticas</a><span class="pages">10</span></li>
-      <li><a href="#roadmap">Roadmap cross-level y scorecard</a><span class="pages">11</span></li>
-    </ol>
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- VERDICT -->
-<!-- ============================================================ -->
-<section id="verdict">
-  <div class="container">
-    <span class="section-num">— 00 · Veredicto</span>
-    <h2>El sitio <em>vende a pesar de sí mismo.</em></h2>
-    <p class="lead">Dormideo tiene los activos para liderar la categoría en España: fabricante real desde 1998, 250.000 clientes, 24/72h, financiación con cuatro entidades, video UGC de verdad. El problema es que el home presenta esos activos como una colchonería más en rebajas, los PDPs ponen fricción donde no toca, y los puntos de máxima intención (Packs, Carrito) están vacíos de palanca comercial.</p>
-
-    <div class="gator-verdict">
-      El cocodrilo aterriza en <strong>"Rebajas de Primavera"</strong>. Eso es una etiqueta de campaña, no una promesa. No le decimos qué problema resolvemos ni por qué nosotros y no Emma. El Judge despierta, interpreta <em>"otra colchonera con descuento"</em> y se va a comparar en pestañas nuevas. El catálogo cierra ventas a pesar del funnel — no gracias a él.
-    </div>
-
-    <h3>Top 7 leaks transversales</h3>
-    <ol>
-      <li><strong>Página de Packs vacía</strong> — bug crítico de catálogo. La página que linka el home y la nav muestra 0 productos.</li>
-      <li><strong>H1 del home vende descuento, no descanso</strong> — falta promesa experiencial arriba.</li>
-      <li><strong>Selector de talla en dropdown de 29 opciones</strong> en los PDPs de colchón. El Gator no escanea menús así.</li>
-      <li><strong>Cero order bump dinámico</strong> en PDP y carrito. Estamos a una checkbox de subir +€20-40 de AOV.</li>
-      <li><strong>Política de devolución contradice la UVP</strong> — vendemos "30 noches de prueba" mientras el cliente paga 50€ por devolver. La FAQ de almohadas dice lo contrario que la política oficial.</li>
-      <li><strong>Categoría Ropa de cama infradesarrollada</strong> — 4 productos. Sin sábanas, sin edredones, sin nórdicos. Aquí está el AOV barato y la recurrencia.</li>
-      <li><strong>Reglas inconsistentes entre PDPs</strong> — "Envío Prime GRATIS" en colchón vs. "Envío gratis a partir de 60€" en protector. El Judge nota lo que no cuadra.</li>
-    </ol>
-
-    <h3>Impacto estimado del paquete</h3>
-    <ul>
-      <li><strong>CVR home → checkout:</strong> +15-25% (H1 + CTA + selector talla)</li>
-      <li><strong>AOV:</strong> +€20-40 (order bump + barra regalo + bundle en PDP)</li>
-      <li><strong>LTV:</strong> +10-15% (devolución coherente + lista email capturada)</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- METHOD -->
-<!-- ============================================================ -->
-<section id="method">
-  <div class="container">
-    <span class="section-num">— 01 · Método</span>
-    <h2>Tres marcos. <em>Aplicados en cada nivel.</em></h2>
-    <p class="lead">Esta auditoría no es opinión. Cada nivel se evalúa con los mismos tres marcos del libro <em>Billion Dollar Websites</em> (Dylan Ander), el método detrás de más de mil millones de dólares optimizados en ecommerce.</p>
-
-    <h3>El Cocodrilo y el Juez</h3>
-    <p>Cada visitante tiene dos mentes. <strong>El Gator (cocodrilo)</strong> es la mente subconsciente, procesa 11 millones de bits por segundo, decide en automático: <em>"¿es lo que quiero? ¿es fácil? ¿confío?"</em>. Si sí → compra sin pensar. <strong>El Judge (juez)</strong> es la mente analítica, lenta, escéptica. Se despierta cuando hay fricción, confusión o desconfianza. Una vez despierto, casi nunca compra.</p>
-    <blockquote>El objetivo de cada página es dejar comer al cocodrilo y no despertar al juez.</blockquote>
-
-    <h3>Los Cinco Pilares</h3>
-    <p>Cada elemento de la web pertenece a uno de cinco pilares. Se evalúan independientes y luego en conjunto:</p>
-    <ul>
-      <li><strong>Offer</strong> — ¿la oferta es clara, congruente con el tráfico, con CTA único?</li>
-      <li><strong>UVPs</strong> — ¿propuestas únicas, visibles, creíbles, no genéricas?</li>
-      <li><strong>Copywriting</strong> — ¿headline = Dream Outcome del cliente? ¿botones reducen fricción?</li>
-      <li><strong>Creative</strong> — ¿el producto es el héroe de la imagen, no el lifestyle?</li>
-      <li><strong>UI/UX</strong> — ¿el camino al checkout es invisible y rápido?</li>
-    </ul>
-
-    <h3>Los Cuadrantes de Tráfico</h3>
-    <p>El método obliga a ubicar el negocio en uno de cuatro cuadrantes según tráfico × CVR. La conclusión es siempre la misma: <strong>no escalar tráfico hacia una web rota</strong>. Primero arreglar conversión, luego escalar.</p>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- HOMEPAGE -->
-<!-- ============================================================ -->
-<section id="home">
-  <div class="container">
-    <span class="section-num">— 02 · Nivel 1 · Homepage</span>
-    <h2>El home vende <em>la promo, no el problema.</em></h2>
-    <p class="lead">Función en funnel: capturar la intención del tráfico frío/tibio, transmitir promesa y enviar al PDP correcto en menos de diez segundos.</p>
-
-    <h3>Gator &amp; Judge</h3>
-    <div class="gator-verdict">
-      El cocodrilo aterriza en <strong>"Rebajas de Primavera"</strong> + sub <em>"tenemos los mejores precios porque somos fabricantes"</em>. No hay Dream Outcome (espalda, calor, mal dormir) ni diferenciación frente a Emma. El Judge lee "otra colchonera con descuento" y se marcha a comparar. Los activos para ganar están ahí (250k clientes, 4,8★, fábrica, 24/72h) pero enterrados o mal jerarquizados.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-mid">Needs Work</span></td><td>Oferta real fuerte (30 noches, garantía, fabricante, 24/72h, financiación) pero presentada como rebaja, no como propuesta integrada</td></tr>
-        <tr><td>UVPs</td><td><span class="status-strong">Strong</span></td><td>30 noches · fabricantes · mejor precio · Made in Spain · 3 años — específicas y creíbles</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-critical">Critical</span></td><td>H1 vende descuento, no resultado. Cero Dream Outcome arriba del fold</td></tr>
-        <tr><td>Creative</td><td><span class="status-mid">Needs Work</span></td><td>Render 3D frío del City Luxury en dormitorio vacío. No emociona</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-mid">Needs Work</span></td><td>Nav con 8+ entradas, sin buscador prominente, sin CTA primario único</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>El H1 vende descuento en vez de resultado</h4>
-      <p><strong>Qué falla:</strong> "Rebajas de Primavera" es una etiqueta de campaña, no una promesa. El sub <em>"somos fabricantes"</em> es feature, no benefit.</p>
-      <p><strong>Por qué importa:</strong> el Gator necesita reconocer en 3 segundos <em>"esto es lo que quiero"</em>. Sin Dream Outcome, el Judge se activa.</p>
-      <p><strong>Cómo arreglarlo:</strong> H1 con promesa experiencial, no clínica. Ejemplos a testar: <em>"Descansa como hace tiempo no descansabas"</em> · <em>"Duerme como un bebé, despierta como nuevo"</em> · <em>"El colchón con el que 250.000 personas ya descansan mejor"</em>. Sub: <em>"Fabricado en España desde 1998 · 30 noches para probarlo en casa"</em>. La rebaja queda como sticker en la imagen, no como headline.</p>
-      <div class="meta"><span>📖 Ch. 6-7 — Hero Section &amp; Dream Outcome</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>No hay CTA primario único en el home</h4>
-      <p><strong>Qué falla:</strong> el botón cercano al hero es <em>"Pagar pedido"</em> (solo aplica con carrito) o <em>"Descubrir Sofá Lea"</em> (que no es el producto estrella).</p>
-      <p><strong>Por qué importa:</strong> sin CTA único, cada visitante decide solo. Cada decisión despierta al Judge.</p>
-      <p><strong>Cómo arreglarlo:</strong> botón ancla en hero: <em>"Encuentra tu colchón en 30 segundos"</em> → quiz funnel corto (peso, postura, problema, presupuesto) que recomienda un modelo.</p>
-      <div class="meta"><span>📖 Ch. 7 — Landing Page Types (Quiz Funnel)</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 3 · Medio</span>
-      <h4>Hero image emocionalmente plana</h4>
-      <p><strong>Qué falla:</strong> render 3D del colchón en dormitorio vacío.</p>
-      <p><strong>Cómo arreglarlo:</strong> A/B test — render actual vs. foto real de persona descansando profundamente + corte transversal de capas como secondary image.</p>
-      <div class="meta"><span>📖 Ch. 6 — Creative &amp; Hero Image</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>Sin captura de email (popup ausente)</h4>
-      <p><strong>Qué falla:</strong> no se detecta popup exit-intent ni scroll trigger. Estamos quemando tráfico Meta sin construir lista.</p>
-      <p><strong>Cómo arreglarlo:</strong> popup exit-intent: <em>"Antes de irte — 30€ en tu primer colchón"</em>. Opt-out clever: <em>"No, prefiero seguir durmiendo mal"</em>.</p>
-      <div class="meta"><span>📖 Ch. 11 — The Perfect Popup</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>Sin tira sticky de promesa cross-page</h4>
-      <p><strong>Cómo arreglarlo:</strong> banner fino arriba: <em>30 noches prueba · Fabricante directo · Envío 24/72h · Financiación sin intereses</em>. Acompaña al usuario por todo el funnel.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust &amp; Post-Click Reassurance</span></div>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Reescribir el H1 con Dream Outcome (1 día, alto impacto).</li>
-      <li>Activar popup exit-intent con cupón 30€ (1 día).</li>
-      <li>Añadir tira de trust fina sticky top (medio día).</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- PLP -->
-<!-- ============================================================ -->
-<section id="plp">
-  <div class="container">
-    <span class="section-num">— 03 · Nivel 2 · PLP Colchones</span>
-    <h2>El listado <em>ofrece 19 héroes. Por eso no hay ninguno.</em></h2>
-    <p class="lead">Función en funnel: ayudar al visitante con intención clara a elegir el modelo correcto en menos de 60 segundos.</p>
-
-    <h3>Gator &amp; Judge</h3>
-    <div class="gator-verdict">
-      El visitante llega tibio (sabe que quiere colchón) y se encuentra <strong>19 modelos en grid</strong>, todos al -45/-60%, todos con ratings 4.7-4.97. Si todos son "el mejor" y todos están de oferta, ninguno destaca. El Judge despierta para decidir lógicamente y se va a buscar reviews externas.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-mid">Needs Work</span></td><td>19 productos sin jerarquía clara (best seller, premium, entrada). Falta "el más vendido" destacado</td></tr>
-        <tr><td>UVPs</td><td><span class="status-mid">Needs Work</span></td><td>Microcopy útil ("combate dolores de espalda") pero no consistente</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-mid">Needs Work</span></td><td>Descuento universal -50/-60% devalúa la marca</td></tr>
-        <tr><td>Creative</td><td><span class="status-mid">Needs Work</span></td><td>Renders 3D similares — sin variación visual que ayude a discriminar</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-critical">Critical</span></td><td>Filtros por medidas, firmeza y adaptabilidad — pero falta filtro por problema (espalda, calor, peso, postura)</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>Falta jerarquía visual: el más vendido + premium + entrada</h4>
-      <p><strong>Cómo arreglarlo:</strong> reordenar para que el Gator decida en 3 cards visibles arriba. Banner: <em>"Si no sabes cuál, el 73% elige el City Luxury"</em>. Etiquetar: "Best seller" / "Premium" / "Mejor relación calidad-precio".</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX &amp; Friction</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>Los filtros no son los que usa el cliente real</h4>
-      <p><strong>Qué falla:</strong> filtros por firmeza 30-100 y adaptabilidad 30-100. El cliente <em>no sabe</em> qué firmeza necesita.</p>
-      <p><strong>Cómo arreglarlo:</strong> añadir filtro por <strong>problema</strong>: dolor de espalda / cervicales / calor / peso pareja / postura lateral. Es el lenguaje del Gator.</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX &amp; Friction</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 3 · Medio</span>
-      <h4>El descuento universal devalúa la marca</h4>
-      <p><strong>Qué falla:</strong> si todo está -50/-60% siempre, el Judge entiende que el precio "real" es el de oferta y el "regular" es ficticio.</p>
-      <p><strong>Cómo arreglarlo:</strong> rotar — 1 producto destacado "Oferta del mes -60%", resto a precio fábrica fijo. Genera FOMO real, no decorativo.</p>
-      <div class="meta"><span>📖 Ch. 4 — Offer Construction</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>Sin quiz / finder embebido arriba</h4>
-      <p><strong>Cómo arreglarlo:</strong> bloque sobre el grid: <em>"¿No sabes cuál? Responde 4 preguntas y te recomendamos uno"</em>.</p>
-      <div class="meta"><span>📖 Ch. 7 — Landing Page Types</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>Cards sin micro-trust</h4>
-      <p><strong>Cómo arreglarlo:</strong> bajo el precio en cada card: <em>"30 noches prueba · Envío 24/72h"</em>.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust</span></div>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Reordenar grid con 3 "héroes" arriba.</li>
-      <li>Añadir filtros por problema (espalda, calor, etc.).</li>
-      <li>Microcopy de trust en cada card.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- PDP MATTRESS -->
-<!-- ============================================================ -->
-<section id="pdp-mattress">
-  <div class="container">
-    <span class="section-num">— 04 · Nivel 3a · PDP Colchón</span>
-    <h2>El PDP donde está el dinero <em>tiene fricción justo donde no debe.</em></h2>
-    <p class="lead">Función en funnel: cerrar la compra. Es donde está el dinero. El PDP de City Luxury — 4,8★ con 3.853 reseñas — tiene buenas piezas, pero pone fricción en el punto de no retorno.</p>
-
-    <h3>Gator &amp; Judge</h3>
-    <div class="gator-verdict">
-      El Gator llega caliente: ya eligió, ahora quiere comprar. La página tiene buenas piezas (4,8★, 3.853 reseñas, 30 noches, fábrica, 24/72h, 13 imágenes, video testimonios, 4 financieras). <strong>Pero le pone fricción exactamente donde no debe</strong>: dropdown de 29 medidas, sin volume discount, sin order bump dinámico, garantía discrepante. El Judge despierta justo antes del click.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-mid">Needs Work</span></td><td>Precio + financiación + 30 noches OK. Falta order bump, volume discount, bundle dinámico</td></tr>
-        <tr><td>UVPs</td><td><span class="status-strong">Strong</span></td><td>7 zonas, viscoelástica termosensible, Naturgel, Cashmere — específicas y técnicas</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-strong">Strong</span></td><td>"Efecto nube", "independencia de lechos" — habla a beneficios</td></tr>
-        <tr><td>Creative</td><td><span class="status-strong">Strong</span></td><td>13 imágenes + carrusel video real de usuarios — bien resuelto</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-critical">Critical</span></td><td>Dropdown de 29 medidas mata conversión</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>Selector de talla = 29 opciones en dropdown</h4>
-      <p><strong>Qué falla:</strong> el cliente elige tamaño en un menú desplegable con 29 combinaciones (80x180, 80x190... 200x200). El Gator no escanea dropdowns largos: se va.</p>
-      <p><strong>Cómo arreglarlo:</strong> sustituir por <strong>2 pasos visuales</strong> — (1) ancho con botones gráficos (80/90/105/135/150/180/200), (2) largo (180/190/200). Precio dinámico al lado.</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX &amp; Friction</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>Cero order bump dinámico</h4>
-      <p><strong>Qué falla:</strong> la sección "Complementa tu pedido" es un carrusel estático de 4 productos. No genera fricción cero ni take-rate predecible.</p>
-      <p><strong>Cómo arreglarlo:</strong> checkbox automático sobre el botón "Agregar al carrito": <em>"☑ Añade protector TENCEL por solo +19€ (ahorras 8€)"</em>. Take-rate típico 25-40%, +€15-25 AOV inmediato.</p>
-      <div class="meta"><span>📖 Ch. 9 — AOV Free Money Tactics</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 3 · Crítico</span>
-      <h4>Sin bundle inteligente en PDP</h4>
-      <p><strong>Cómo arreglarlo:</strong> configurador dentro del PDP: <em>"¿Añades base? + Canapé Magnum 199€ / + Tapizada 249€ / + Somier 99€ / No, solo colchón"</em>. No depende de la página Packs externa.</p>
-      <div class="meta"><span>📖 Ch. 9 — Bundling</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>Mensaje de garantía contradictorio</h4>
-      <p><strong>Qué falla:</strong> cabecera dice "3 años", detalle dice "36 meses" en un sitio y "30 noches" en otro. Para colchón el estándar de mercado es 10 años.</p>
-      <p><strong>Cómo arreglarlo:</strong> unificar a "10 años de garantía + 30 noches de prueba". Es estándar en la categoría, eleva ticket percibido.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>Stock counter genérico</h4>
-      <p><strong>Qué falla:</strong> <em>"Quedan menos de 5"</em> se ve fake si no cambia.</p>
-      <p><strong>Cómo arreglarlo:</strong> mostrar contador real conectado a inventario, o eliminar el copy.</p>
-      <div class="meta"><span>📖 Ch. 10 — Scarcity &amp; Urgency</span></div>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Cambiar dropdown por selector visual de tallas en todos los PDPs de colchón.</li>
-      <li>Activar order bump checkbox de protector.</li>
-      <li>Unificar mensaje de garantía a 10 años.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- PDP SOFA -->
-<!-- ============================================================ -->
-<section id="pdp-sofa">
-  <div class="container">
-    <span class="section-num">— 05 · Nivel 3b · PDP Sofá Lea</span>
-    <h2>El PDP del sofá <em>es el nivel del resto del site.</em></h2>
-    <p class="lead">El PDP de Sofá Lea está mejor resuelto que el de colchón: H1 con promesa, UVPs concretas, UGC real. Es el modelo a replicar. Pero tiene tres tropezones que el Gator no perdona.</p>
-
-    <h3>Gator &amp; Judge</h3>
-    <div class="gator-verdict">
-      <strong>"Tu sofá no debería tener una sola postura"</strong> es exactamente lo que el resto del sitio debería estar haciendo. Las UVPs (<em>"Hecho aquí, con cariño"</em>, <em>"Llega rápido, dura mucho"</em>, <em>"Montarlo es… no montarlo"</em>) son emocionales y diferenciales. El UGC <em>"Así se vive con Lea"</em> es prueba social real. Pero el Gator tropieza con el precio tachado de €1.645 (anchoring poco creíble), variantes agotadas tachadas, y una garantía de 3 años en producto de 799€.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-mid">Needs Work</span></td><td>799€ vs 1.645€ es -52%; el "precio en tienda física convencional" no es verificable, anchoring débil</td></tr>
-        <tr><td>UVPs</td><td><span class="status-strong">Strong</span></td><td>Hechas aquí + llega rápido + montarlo es no montarlo. Emocionales y diferenciales</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-strong">Strong</span></td><td>"Tu sofá no debería tener una sola postura" — Dream Outcome con humor. Modelo a seguir</td></tr>
-        <tr><td>Creative</td><td><span class="status-strong">Strong</span></td><td>Lifestyle real + UGC en video — ejemplar</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-mid">Needs Work</span></td><td>Variantes agotadas visibles (rompe sensación premium); falta configurador medidas/extras</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority mid">
-      <span class="label">Priority 1 · Medio</span>
-      <h4>El anchoring del €1.645 es endeble</h4>
-      <p><strong>Qué falla:</strong> "Precio en tienda física convencional" no se puede demostrar. El Judge lo huele.</p>
-      <p><strong>Cómo arreglarlo:</strong> anchoring honesto y comparable: <em>"Sofá-cama equivalente en Maisons du Monde: 1.200€. Precio fábrica en Dormideo: 799€"</em>.</p>
-      <div class="meta"><span>📖 Ch. 4 — Offer Construction</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 2 · Medio</span>
-      <h4>Variantes agotadas matan ánimo</h4>
-      <p><strong>Cómo arreglarlo:</strong> en vez de tachar el swatch, sustituir por <em>"Avísame cuando vuelva"</em> — captura email + crea expectativa.</p>
-      <div class="meta"><span>📖 Ch. 10 — Scarcity</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 3 · Medio</span>
-      <h4>Garantía de 3 años en sofá premium es corta</h4>
-      <p><strong>Qué falla:</strong> IKEA da 10 años en sofás. Tres años posiciona Dormideo por debajo de su precio.</p>
-      <p><strong>Cómo arreglarlo:</strong> subir estructura a 5-10 años (es la columna, no el tapizado). Eleva ticket percibido sin coste material.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>Sin cross-sell de cama-colchón</h4>
-      <p><strong>Cómo arreglarlo:</strong> <em>"¿Te llevas un colchón fino para usar Lea como cama de invitados? -15%"</em>. Conecta catálogo.</p>
-      <div class="meta"><span>📖 Ch. 9 — Cross-sell</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>224 reviews sin estrella visible</h4>
-      <p><strong>Cómo arreglarlo:</strong> mostrar rating numérico bajo el título, no solo el conteo.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust</span></div>
-    </div>
-
-    <h3>Lección transversal</h3>
-    <p><strong>El PDP de sofá demuestra que dentro de Dormideo saben hacerlo.</strong> El reto es portar este nivel de copy y narrativa a los PDPs de colchón, que son el grueso del negocio. El H1 del sofá habla al Gator. El H1 del colchón habla al departamento de marketing.</p>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ALMOHADAS -->
-<!-- ============================================================ -->
-<section id="almohadas">
-  <div class="container">
-    <span class="section-num">— 06 · Nivel 4 · Almohadas (PLP + PDP)</span>
-    <h2>Catálogo bueno, <em>vendido como folleto.</em></h2>
-    <p class="lead">Función en funnel: capturar ticket complementario (€34–99) y abrir recurrencia con producto de menor compromiso. Es la palanca natural de AOV para quien ya compró colchón — y la puerta de entrada barata para quien aún no se atreve.</p>
-
-    <h3>Gator &amp; Judge — PLP Almohadas</h3>
-    <div class="gator-verdict">
-      Header bonito (<em>"Dormir bien no debería ser un lujo, sino una experiencia diaria"</em>) y copy persona-based <em>"si duermes de lado / boca arriba / boca abajo"</em> sí ayuda al Gator. <strong>Pero el catálogo solo tiene 6 productos y cero filtros por tipo</strong> (cervical, viscoelástica, modulable, transpirable) pese a que el propio copy los distingue. El cocodrilo lee, sigue, no sabe a cuál ir y se va.
-    </div>
-
-    <h3>Gator &amp; Judge — PDP Asana Osteopathic</h3>
-    <div class="gator-verdict">
-      Producto premium (€99, 107 reseñas, "Original"). <strong>Pero la página parece de inventario, no de venta:</strong> sin selector de altura/firmeza (SKU único), sin descuento, sin estrellas visibles, sin urgencia, sin order bump, sin upsell de fundas. La FAQ dice <em>"puedes devolverla sin problemas"</em> mientras la política refund-policy dice que almohadas <strong>no admiten devolución por higiene</strong>. Segunda incongruencia que mina la confianza.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-mid">Needs Work</span></td><td>Sin descuentos, sin volume discount, sin pack de 2 almohadas. La oferta es solo "el producto"</td></tr>
-        <tr><td>UVPs</td><td><span class="status-mid">Needs Work</span></td><td>Mejor precio · envío gratis · 36 meses · fabricante. Genéricas, no específicas del producto</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-strong">Strong</span></td><td>El copy persona-based del PLP es muy bueno — falta llevarlo al PDP</td></tr>
-        <tr><td>Creative</td><td><span class="status-mid">Needs Work</span></td><td>Carrusel de 20 imágenes UGC es activo fuerte; falta close-up de tecnología, corte de capas</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-critical">Critical</span></td><td>PLP sin filtro por tipo; PDP sin selector de altura ni recomendador</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>PLP sin filtros por tipo</h4>
-      <p><strong>Qué falla:</strong> el cliente sabe si duerme de lado, no sabe si quiere cervical o viscoelástica. El propio copy del PLP segmenta por postura — pero esa segmentación no es filtro, solo texto. El Gator lee, no actúa.</p>
-      <p><strong>Cómo arreglarlo:</strong> chips de filtro arriba del grid: <em>Para dormir de lado · Para dormir boca arriba · Para cervicales · Refrescante</em>. Click → grid filtrado.</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX &amp; Friction</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>Cero volume discount y cero pack de almohadas</h4>
-      <p><strong>Qué falla:</strong> las almohadas se compran en pareja casi siempre (compra para cama de matrimonio). Hoy se vende como unidad suelta.</p>
-      <p><strong>Cómo arreglarlo:</strong> oferta nativa en cada PDP: <em>"1× €99 / 2× €169 (ahorras 29€) / Pack pareja + 2 fundas TENCEL €189"</em>. Take-rate del 2× típico 30-50% cuando es para pareja.</p>
-      <div class="meta"><span>📖 Ch. 9 — Volume Discounts</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 3 · Crítico</span>
-      <h4>Incongruencia de devolución (otra vez)</h4>
-      <p><strong>Qué falla:</strong> FAQ del PDP dice <em>"puedes devolverla sin problemas"</em>. Política oficial dice que almohadas <strong>no son devolvibles</strong> por higiene.</p>
-      <p><strong>Cómo arreglarlo:</strong> decidir y unificar. La opción honesta: <em>"Higiene primero: las almohadas no admiten devolución una vez abiertas. Por eso te ofrecemos consultoría WhatsApp gratis antes de comprar"</em>. Convierte la limitación en argumento de servicio.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>Sin selector de altura / firmeza en el PDP</h4>
-      <p><strong>Cómo arreglarlo:</strong> si el producto es SKU único, hacerlo explícito con badge <em>"Una altura. Adaptable a 3 posturas"</em>. Si admite variantes (modulable), añadir selector visual con preview.</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>PDP sin recomendador "¿cuál de las 6?"</h4>
-      <p><strong>Cómo arreglarlo:</strong> bloque comparativo abajo del PDP: <em>"Si quieres más altura → High. Si quieres frescor → ViscoAir. Si tienes cervicales → Asana"</em>. Reduce arrepentimiento y aumenta confianza.</p>
-      <div class="meta"><span>📖 Ch. 7 — Comparison &amp; Decision Aid</span></div>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Añadir filtros chip por tipo en PLP de almohadas.</li>
-      <li>Activar pack 2× en cada PDP con ahorro cuantificado.</li>
-      <li>Unificar mensaje de devolución (FAQ vs política).</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ROPA DE CAMA -->
-<!-- ============================================================ -->
-<section id="ropa-cama">
-  <div class="container">
-    <span class="section-num">— 07 · Nivel 5 · Ropa de cama</span>
-    <h2>Catálogo flaquito, <em>oportunidad gorda.</em></h2>
-    <p class="lead">Función en funnel: AOV inmediato (productos €11–43) y motor de recurrencia (sábanas, fundas y protectores son consumibles). Hoy la categoría tiene 4 productos. Es la palanca AOV más infradesarrollada del catálogo.</p>
-
-    <h3>Gator &amp; Judge — PLP Ropa de cama</h3>
-    <div class="gator-verdict">
-      Cuatro productos: 2 protectores, 1 funda almohada, 1 funda colchón. <strong>No hay juegos de sábanas, no hay edredones, no hay fundas nórdicas, no hay toppers.</strong> El cliente que compra un colchón de 300€ está dispuesto a llevarse 60-120€ extra en textil — y aquí no encuentra qué llevarse. La página es "estantería de complementos" en vez de propuesta textil completa.
-    </div>
-
-    <h3>Gator &amp; Judge — PDP Protector TENCEL</h3>
-    <div class="gator-verdict">
-      Buen producto, copy aspiracional bien resuelto (<em>"Una protección tan agradable que parecerá que duermas sin protección"</em>), 9 medidas, 36 meses garantía, 100 reseñas. <strong>Pero hay una inconsistencia con el resto del site:</strong> aquí pone <em>"Envío gratis a partir de 60€"</em>, mientras los PDPs de colchón dicen <em>"Envío Prime GRATIS"</em>. El Judge se pregunta cuál es la regla real. Y cero volume discount en un producto que casi siempre se compra junto al colchón.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-critical">Critical</span></td><td>Categoría con 4 productos. Falta gama básica: juegos de sábanas, edredones, fundas nórdicas</td></tr>
-        <tr><td>UVPs</td><td><span class="status-strong">Strong</span></td><td>Materiales bien explicados (TENCEL, algodón, anti-ácaros)</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-strong">Strong</span></td><td>Copy del PDP de protector — bueno. Modelo a replicar</td></tr>
-        <tr><td>Creative</td><td><span class="status-mid">Needs Work</span></td><td>Imágenes de producto correctas; faltan fotos de cama vestida real</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-mid">Needs Work</span></td><td>PLP sin agrupación (protectores / sábanas / nórdicos); umbral envío gratis incoherente con el resto del site</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>Catálogo demasiado corto para la categoría</h4>
-      <p><strong>Qué falla:</strong> ropa de cama es donde se hace AOV barato y recurrencia. 4 productos no son catálogo, son colocación testimonial.</p>
-      <p><strong>Cómo arreglarlo:</strong> sumar al menos 8 SKUs en 90 días — juegos de sábanas algodón (3 colores), juego de sábanas TENCEL premium, edredón nórdico 4 estaciones, funda nórdica (3 colores), 2 toppers. Punto base de pedido pasa de 27€ a 60-90€.</p>
-      <div class="meta"><span>📖 Ch. 9 — Catalog as AOV Lever</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>Umbral de envío gratis incoherente entre niveles</h4>
-      <p><strong>Qué falla:</strong> PDP colchón dice "Envío Prime GRATIS". PDP protector dice "Envío gratis a partir de 60€". El Judge nota la diferencia.</p>
-      <p><strong>Cómo arreglarlo:</strong> regla única para todo el catálogo y mostrarla siempre igual. Si la regla real es <em>"gratis a partir de 60€"</em>, comunicarlo así en colchón también — y el colchón siempre supera el umbral, así que sigue siendo "gratis". Más honesto y consistente.</p>
-      <div class="meta"><span>📖 Ch. 12 — Consistency &amp; Trust</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 3 · Crítico</span>
-      <h4>Sin bundle "Look completo de cama"</h4>
-      <p><strong>Cómo arreglarlo:</strong> en PDP de colchón añadir el bundle <em>"Vístelo completo: + Protector TENCEL + 2 fundas almohada + Juego sábanas algodón = 89€ en vez de 116€"</em>. Aumenta AOV 60-80€ con un clic.</p>
-      <div class="meta"><span>📖 Ch. 9 — Bundling</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 4 · Medio</span>
-      <h4>PLP sin agrupación por tipo</h4>
-      <p><strong>Cómo arreglarlo:</strong> 4 productos mezclados se ven peor que 4 productos agrupados. Subgrupos visuales: <em>Protectores · Fundas · Sábanas (próximamente)</em>. Comunica catálogo en expansión y reduce sensación de vacío.</p>
-      <div class="meta"><span>📖 Ch. 8 — UI/UX</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 5 · Medio</span>
-      <h4>Sin recurrencia / subscribe &amp; save</h4>
-      <p><strong>Cómo arreglarlo:</strong> sábanas y fundas son consumibles que se reponen cada 12-24 meses. Activar <em>"Pídelo de nuevo en 18 meses con -10%"</em> con email automático. LTV directo.</p>
-      <div class="meta"><span>📖 Ch. 9 — Subscribe &amp; Save</span></div>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Unificar regla de envío gratis en todo el site.</li>
-      <li>Crear bundle "Vístelo completo" en PDPs de colchón.</li>
-      <li>Decidir hoja de ruta de catálogo (8 SKUs en 90 días).</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- PACKS -->
-<!-- ============================================================ -->
-<section id="packs">
-  <div class="container">
-    <span class="section-num">— 08 · Nivel 6 · Packs / Bundles</span>
-    <h2>La página de Packs <em>está vacía.</em></h2>
-    <p class="lead">Función en funnel: empujar AOV ofreciendo combos pre-curados. Es la palanca AOV más obvia del catálogo. Hoy es la página más rota del site.</p>
-
-    <div class="critical-finding">
-      <h4>Hallazgo crítico</h4>
-      <p>La página <code>/collections/packs</code> dice <em>"desde 364€"</em> en su título — pero muestra <strong>0 productos</strong>. Es la página que linka el home y la nav principal. El Gator llega expectante, encuentra vacío, y el Judge dispara la duda en todo lo demás: <em>"¿qué más no funciona aquí?"</em>.</p>
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-critical">Critical</span></td><td>0 productos visibles</td></tr>
-        <tr><td>UVPs</td><td><span class="status-mid">Needs Work</span></td><td>"Ahorra en tu descanso" — genérico</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-mid">Needs Work</span></td><td>Texto explicativo bien — pero sin packs no importa</td></tr>
-        <tr><td>Creative</td><td><span class="status-critical">Critical</span></td><td>Sin imágenes de packs</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-critical">Critical</span></td><td>Página completamente vacía</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>Bug de catálogo · resolver hoy</h4>
-      <p><strong>Cómo arreglarlo:</strong> revisar configuración de la colección "packs" en Shopify (tag, filtro automático o selección manual). Es la página que el home y la nav apuntan — no puede estar vacía un día más.</p>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>Sin ahorro cuantificado</h4>
-      <p><strong>Cómo arreglarlo:</strong> al poblar la página, cada pack debe mostrar el ahorro en euros: <em>"Pack City Luxury + Canapé Magnum: 540€ (ahorras 180€ vs. comprar por separado)"</em>.</p>
-      <div class="meta"><span>📖 Ch. 9 — AOV Bundling</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 3 · Crítico</span>
-      <h4>Los bundles no se ofrecen dentro del PDP</h4>
-      <p><strong>Cómo arreglarlo:</strong> aunque se arregle esta página, los bundles deben aparecer <strong>dentro del PDP de colchón</strong> como configurador en línea. Es donde está la intención, no en una página de "Packs" que casi nadie visita orgánicamente.</p>
-      <div class="meta"><span>📖 Ch. 9 — Bundling in PDP</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- CART -->
-<!-- ============================================================ -->
-<section id="cart">
-  <div class="container">
-    <span class="section-num">— 09 · Nivel 7 · Carrito</span>
-    <h2>El carrito es <em>una hoja de cálculo, no una venta.</em></h2>
-    <p class="lead">Función en funnel: última oportunidad antes del checkout. Reafirmar promesa, capturar AOV, blindar la confianza. Hoy hace lo mínimo.</p>
-
-    <h3>Gator &amp; Judge</h3>
-    <div class="gator-verdict">
-      Quien llega al carrito ya casi compra. La página muestra "Tu carrito está vacío" (cuando aplica) y un carrusel de 4 productos sugeridos. <strong>No reafirma garantía. No reafirma envío. No ofrece bump. No muestra barra de progreso a regalo.</strong> Cada milisegundo de duda aquí es dinero perdido.
-    </div>
-
-    <h3>Five Pillars</h3>
-    <table>
-      <thead><tr><th>Pilar</th><th>Estado</th><th>Hallazgo</th></tr></thead>
-      <tbody>
-        <tr><td>Offer</td><td><span class="status-critical">Critical</span></td><td>Sin order bump, sin upsell de complementos, sin progress bar de regalo</td></tr>
-        <tr><td>UVPs</td><td><span class="status-critical">Critical</span></td><td>Las 5 UVPs clave del home no se reafirman en este momento crítico</td></tr>
-        <tr><td>Copywriting</td><td><span class="status-mid">Needs Work</span></td><td>"Tu carrito está vacío" — funcional pero sin gancho</td></tr>
-        <tr><td>Creative</td><td><span class="status-mid">Needs Work</span></td><td>Solo productos sugeridos. Sin iconografía de garantía/proceso</td></tr>
-        <tr><td>UI/UX</td><td><span class="status-strong">Strong</span></td><td>Limpio y rápido</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Priority Issues</h3>
-
-    <div class="priority crit">
-      <span class="label">Priority 1 · Crítico</span>
-      <h4>Cero order bump previo a checkout</h4>
-      <p><strong>Cómo arreglarlo:</strong> sobre el botón "Pagar pedido", añadir dos checkboxes: <em>"☑ Añade protector TENCEL por +19€"</em> y <em>"☑ Añade 2ª almohada ViscoAir por +29€"</em>.</p>
-      <div class="meta"><span>📖 Ch. 9 — Order Bump</span></div>
-    </div>
-
-    <div class="priority crit">
-      <span class="label">Priority 2 · Crítico</span>
-      <h4>No hay barra de progreso a regalo</h4>
-      <p><strong>Cómo arreglarlo:</strong> arriba del carrito: <em>"Te faltan 47€ para llevarte una funda de almohada GRATIS"</em>. Aumenta ticket sin descontar precio.</p>
-      <div class="meta"><span>📖 Ch. 9 — Gift With Purchase / Free Shipping Threshold</span></div>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Priority 3 · Medio</span>
-      <h4>No se reafirman las 5 UVPs en el carrito</h4>
-      <p><strong>Cómo arreglarlo:</strong> tira de iconos bajo el resumen del pedido: 30 noches prueba · Envío 24/72h · Fabricante directo · Garantía · Financiación.</p>
-      <div class="meta"><span>📖 Ch. 12 — Trust at Checkout</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- TRUST -->
-<!-- ============================================================ -->
-<section id="trust">
-  <div class="container">
-    <span class="section-num">— 10 · Nivel 8 · Trust &amp; Políticas</span>
-    <h2>La devolución <em>contradice la promesa.</em></h2>
-    <p class="lead">El home y los PDPs venden "30 noches de prueba" como UVP estrella. La política real cuesta 50€ y tiene letras pequeñas que el Judge no perdona cuando las descubre.</p>
-
-    <div class="critical-finding">
-      <h4>Discrepancia crítica</h4>
-      <p><strong>Lo que se promete arriba:</strong> "30 noches de prueba".<br>
-      <strong>Lo que dice la política:</strong></p>
-      <ul>
-        <li>Devolución de colchón en España peninsular: <strong>50€ a cargo del cliente</strong>.</li>
-        <li>Cambio: <strong>100€ a cargo del cliente</strong>.</li>
-        <li>El segundo colchón <strong>pierde el derecho de desistimiento</strong>.</li>
-        <li>Almohadas, sábanas, canapés, bases tapizadas, somieres y sofás <strong>no admiten devolución</strong> ("higiene").</li>
-      </ul>
-    </div>
-
-    <h3>Impacto en el Judge</h3>
-    <p>Cuando el cliente descubre esto — en reviews, redes o tras comprar — rompe la confianza. Es el clásico <em>"letra pequeña que aparece después"</em>. Emma y Maxcolchon cubren devolución gratuita en colchones: es el estándar competitivo. Dormideo está cobrando 50€ por cumplir una UVP que vende como gratuita.</p>
-
-    <h3>Dos caminos</h3>
-
-    <div class="priority crit">
-      <span class="label">Opción A · Premium</span>
-      <h4>Cubrir la devolución del primer colchón</h4>
-      <p>La devolución gratuita es marketing, no logística. El coste por unidad devuelta queda absorbido por el aumento de CVR (el Gator se relaja). Habilita usar <em>"30 noches gratis, sin riesgo"</em> como UVP real. Equiparable a Emma.</p>
-    </div>
-
-    <div class="priority mid">
-      <span class="label">Opción B · Honesta</span>
-      <h4>Reescribir la UVP para que case con la política</h4>
-      <p>Cambiar a <em>"30 noches de prueba · Cambio fácil por 50€"</em>. Pierde algo de gancho pero gana credibilidad. Mucho mejor que el conflicto actual.</p>
-    </div>
-
-    <h3>Quick Wins · esta semana</h3>
-    <ul>
-      <li>Decidir A o B (decisión estratégica con dirección).</li>
-      <li>Actualizar copy en home, PDPs y página de política coherentemente.</li>
-      <li>Mencionar la devolución/cambio bajo el botón "Agregar al carrito" para que no haya sorpresas post-venta.</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!-- ROADMAP -->
-<!-- ============================================================ -->
-<section id="roadmap">
-  <div class="container">
-    <span class="section-num">— 11 · Roadmap y Scorecard</span>
-    <h2>Cinco fixes <em>antes de gastar otro euro en ads.</em></h2>
-    <p class="lead">Cuadrante estimado: <strong>Alto tráfico × CVR media-baja → Fix the website NOW</strong>. Escalar budget sobre el funnel actual amplifica los leaks. Estos cinco fixes son el orden correcto.</p>
-
-    <h3>Scorecard por nivel</h3>
+    <span class="section-num">01 · Scorecard</span>
+    <h2>Estado por nivel</h2>
+    <p class="sub">9 niveles auditados. 3 críticos · 5 con mejora · 1 sólido (modelo a replicar).</p>
     <div class="scorecard">
-      <div class="score-row">
-        <span class="name">Homepage</span>
-        <span class="desc">UVPs sólidas pero H1 vende descuento y falta CTA primario</span>
-        <span class="badge status-mid">🟡 Improve</span>
+      <div class="score-cell mid">
+        <span class="lvl">Nivel 1</span>
+        <span class="nm">Homepage</span>
+        <span class="st">🟡 Mejorar</span>
       </div>
-      <div class="score-row">
-        <span class="name">PLP Colchones</span>
-        <span class="desc">19 productos sin jerarquía + filtros que no usa el cliente</span>
-        <span class="badge status-mid">🟡 Improve</span>
+      <div class="score-cell mid">
+        <span class="lvl">Nivel 2</span>
+        <span class="nm">PLP Colchones</span>
+        <span class="st">🟡 Mejorar</span>
       </div>
-      <div class="score-row">
-        <span class="name">PDP Colchón</span>
-        <span class="desc">Buena copy, dropdown 29 tallas y cero order bump matan CVR</span>
-        <span class="badge status-mid">🟡 Improve</span>
+      <div class="score-cell mid">
+        <span class="lvl">Nivel 3a</span>
+        <span class="nm">PDP Colchón</span>
+        <span class="st">🟡 Mejorar</span>
       </div>
-      <div class="score-row">
-        <span class="name">PDP Sofá Lea</span>
-        <span class="desc">Modelo a replicar en el resto del catálogo</span>
-        <span class="badge status-strong">🟢 Strong</span>
+      <div class="score-cell ok">
+        <span class="lvl">Nivel 3b</span>
+        <span class="nm">PDP Sofá Lea</span>
+        <span class="st">🟢 Sólido · modelo</span>
       </div>
-      <div class="score-row">
-        <span class="name">Almohadas (PLP + PDP)</span>
-        <span class="desc">Catálogo OK pero sin filtros por tipo, sin pack 2× y con incongruencia de devolución</span>
-        <span class="badge status-mid">🟡 Improve</span>
+      <div class="score-cell mid">
+        <span class="lvl">Nivel 4</span>
+        <span class="nm">Almohadas</span>
+        <span class="st">🟡 Mejorar</span>
       </div>
-      <div class="score-row">
-        <span class="name">Ropa de cama</span>
-        <span class="desc">Solo 4 productos; sin sábanas, sin nórdicos. Categoría infradesarrollada y umbral de envío incoherente</span>
-        <span class="badge status-critical">🔴 Major</span>
+      <div class="score-cell crit">
+        <span class="lvl">Nivel 5</span>
+        <span class="nm">Ropa de cama</span>
+        <span class="st">🔴 Crítico</span>
       </div>
-      <div class="score-row">
-        <span class="name">Packs</span>
-        <span class="desc">Página vacía — bug crítico de catálogo</span>
-        <span class="badge status-critical">🔴 Major</span>
+      <div class="score-cell crit">
+        <span class="lvl">Nivel 6</span>
+        <span class="nm">Packs</span>
+        <span class="st">🔴 Crítico · página vacía</span>
       </div>
-      <div class="score-row">
-        <span class="name">Carrito</span>
-        <span class="desc">Sin order bump, sin barra de regalo, sin reafirmación de UVPs</span>
-        <span class="badge status-critical">🔴 Major</span>
+      <div class="score-cell crit">
+        <span class="lvl">Nivel 7</span>
+        <span class="nm">Carrito</span>
+        <span class="st">🔴 Crítico</span>
       </div>
-      <div class="score-row">
-        <span class="name">Trust / Políticas</span>
-        <span class="desc">UVP "30 noches" contradice política (50€ cliente)</span>
-        <span class="badge status-critical">🔴 Major</span>
+      <div class="score-cell crit">
+        <span class="lvl">Nivel 8</span>
+        <span class="nm">Trust / Devolución</span>
+        <span class="st">🔴 Crítico</span>
       </div>
     </div>
+  </div>
+</section>
 
-    <h3>Roadmap · 4 semanas</h3>
+<!-- HALLAZGOS CRÍTICOS -->
+<section>
+  <div class="container">
+    <span class="section-num">02 · Hallazgos críticos</span>
+    <h2>Los <em>10 leaks</em> que sangran dinero</h2>
+    <p class="sub">Ordenados por impacto. Cada uno se ataca en menos de una semana de desarrollo.</p>
 
-    <h4>Semana 1 · Stop the bleed</h4>
-    <ol>
-      <li>Reparar página de Packs (catálogo vacío).</li>
-      <li>Reescribir H1 del home con tono experiencial (no clínico).</li>
-      <li>Sustituir dropdown de 29 tallas por selector visual de 2 pasos.</li>
-      <li>Activar order bump checkbox en PDP y carrito.</li>
-      <li>Activar popup exit-intent con cupón 30€.</li>
-      <li>Unificar regla de envío gratis en todo el site.</li>
-    </ol>
+    <table class="findings">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nivel</th>
+          <th>Qué pasa</th>
+          <th>Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Packs</td>
+          <td class="what">Página de Packs muestra 0 productos pese a estar en el home y la nav</td>
+          <td class="fix">Bug de catálogo Shopify. Revisar tag/filtro de la colección. Resolver hoy.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Trust</td>
+          <td class="what">"30 noches de prueba" choca con política: cliente paga 50€ devolución; almohadas no admiten devolución (FAQ dice lo contrario)</td>
+          <td class="fix">Decidir: A) cubrir devolución del primer colchón (estándar Emma); B) reescribir UVP honesta ("cambio fácil por 50€"). Unificar FAQ + política.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">PDP Colchón</td>
+          <td class="what">Selector de talla = dropdown con 29 opciones. El cliente no escanea menús así.</td>
+          <td class="fix">Selector visual en 2 pasos: ancho (botones) → largo (botones). Precio dinámico al lado.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">PDP + Carrito</td>
+          <td class="what">Cero order bump dinámico. Solo carrusel estático "Complementa tu pedido".</td>
+          <td class="fix">Checkbox sobre "Agregar al carrito": <em>"☑ Añade protector TENCEL +19€"</em>. Take-rate 25-40%, +20€ AOV.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Homepage</td>
+          <td class="what">H1 = "Rebajas de Primavera". Vende descuento, no descanso. Sin CTA primario.</td>
+          <td class="fix">H1 experiencial — <em>"Descansa como hace tiempo no descansabas"</em> o <em>"Duerme como un bebé"</em>. CTA único: quiz "Encuentra tu colchón en 30 segundos".</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Ropa de cama</td>
+          <td class="what">Categoría con solo 4 productos. Sin sábanas, sin nórdicos, sin edredones.</td>
+          <td class="fix">Roadmap de 8 SKUs en 90 días (sábanas algodón, TENCEL, nórdico, fundas, toppers). Bundle "Vístelo completo" en PDP colchón.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Carrito</td>
+          <td class="what">No reafirma garantía / envío / 30 noches. No tiene barra de progreso a regalo.</td>
+          <td class="fix">Tira de 5 iconos UVPs + barra: <em>"Te faltan 47€ para llevarte una funda GRATIS"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">PLP Colchones</td>
+          <td class="what">19 productos sin jerarquía + filtros por firmeza 30-100 (el cliente no sabe qué firmeza necesita)</td>
+          <td class="fix">3 héroes etiquetados arriba (Best seller / Premium / Entrada). Filtros por <strong>problema</strong>: espalda · cervicales · calor · peso pareja.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Almohadas</td>
+          <td class="what">PLP sin filtros por tipo (cervical/viscoelástica/transpirable). PDP sin pack 2× pese a que se compran en pareja.</td>
+          <td class="fix">Chips de filtro en PLP. Pack 2× en cada PDP: <em>"1× 99€ / 2× 169€ (ahorras 29€)"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="lvl">Cross-site</td>
+          <td class="what">Reglas inconsistentes: "Envío Prime GRATIS" en colchón vs. "Envío gratis a partir de 60€" en protector. El Judge nota lo que no cuadra.</td>
+          <td class="fix">Una regla única, comunicada igual en todo el site.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <h4>Semana 2 · Trust &amp; AOV</h4>
-    <ol>
-      <li>Decidir devolución del primer colchón gratis vs. comunicación honesta. Aplicar.</li>
-      <li>Unificar mensaje de devolución de almohadas (FAQ vs política).</li>
-      <li>Barra de progreso a regalo en carrito.</li>
-      <li>Unificar mensaje de garantía a 10 años en colchones.</li>
-      <li>Configurador de bundle dentro del PDP de colchón.</li>
-      <li>Pack 2× en cada PDP de almohada.</li>
-    </ol>
+<!-- HALLAZGOS MEDIOS -->
+<section>
+  <div class="container">
+    <span class="section-num">03 · Hallazgos medios</span>
+    <h2>Mejoras de <em>siguiente capa</em></h2>
+    <p class="sub">No sangran como los críticos. Suman al combo. Atacar después de las 10 anteriores.</p>
 
-    <h4>Semana 3 · PLP y filtros</h4>
-    <ol>
-      <li>Reordenar grid de Colchones con 3 héroes etiquetados.</li>
-      <li>Añadir filtros por problema (espalda, calor, peso pareja…).</li>
-      <li>Filtros chip por tipo en PLP de Almohadas (lado / boca arriba / cervicales / refrescante).</li>
-      <li>Quiz finder embebido sobre el grid de colchones.</li>
-      <li>Microcopy de trust en cada card.</li>
-    </ol>
+    <table class="findings">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nivel</th>
+          <th>Qué pasa</th>
+          <th>Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">Homepage</td>
+          <td class="what">Hero image es render 3D frío en dormitorio vacío. No emociona.</td>
+          <td class="fix">A/B test: render vs. foto real de persona descansando + corte transversal de capas.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">Homepage</td>
+          <td class="what">Sin popup exit-intent. Tráfico Meta se va sin email.</td>
+          <td class="fix">Exit-intent con cupón 30€ + opt-out clever: <em>"No, prefiero seguir durmiendo mal"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">PDP Colchón</td>
+          <td class="what">Garantía contradictoria: "3 años" en cabecera, "36 meses" en detalle. Estándar mercado son 10 años.</td>
+          <td class="fix">Unificar a "10 años de garantía + 30 noches de prueba".</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">PDP Sofá Lea</td>
+          <td class="what">Anchoring del €1.645 ("precio en tienda física convencional") no es verificable.</td>
+          <td class="fix">Comparativa honesta: <em>"Sofá-cama equivalente en Maisons du Monde: 1.200€. Precio fábrica: 799€"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">PDP Sofá Lea</td>
+          <td class="what">Garantía 3 años en sofá premium. IKEA da 10 años.</td>
+          <td class="fix">Subir estructura a 5-10 años (es columna, no tapizado).</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">PLP Colchones</td>
+          <td class="what">Todo al -50/-60%. El descuento universal devalúa la marca.</td>
+          <td class="fix">Rotar: 1 producto "Oferta del mes -60%", resto a precio fábrica fijo.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">Almohadas</td>
+          <td class="what">PDP Asana sin selector de altura. SKU único sin explicitar.</td>
+          <td class="fix">Badge <em>"Una altura. Adaptable a 3 posturas"</em> o añadir variantes modulables.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">Ropa de cama</td>
+          <td class="what">Sin subscribe &amp; save en producto recurrente (sábanas, fundas se reponen cada 12-24m).</td>
+          <td class="fix">Email automático: <em>"Pídelo de nuevo en 18 meses con -10%"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="lvl">Cross-site</td>
+          <td class="what">Sofá Lea tiene el copy ganador del catálogo. Los PDPs de colchón hablan a marketing, no al cliente.</td>
+          <td class="fix">Portar el patrón (H1 con promesa + UVPs emocionales + UGC video) a los 5 PDPs de colchón.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <h4>Semana 4 · Replicar el patrón Lea + cama completa</h4>
-    <ol>
-      <li>Reescribir H1 de los 5 PDPs de colchón con el patrón de Sofá Lea (promesa experiencial + UVPs emocionales).</li>
-      <li>Pasar UGC video al PDP de cada modelo.</li>
-      <li>Crear bundle "Vístelo completo" (colchón + protector + 2 fundas + sábanas) en PDPs de colchón.</li>
-      <li>Iniciar A/B tests del hero del home (control vs. variante experiencial).</li>
-      <li>Cerrar hoja de ruta de catálogo de ropa de cama (8 SKUs en 90 días).</li>
-    </ol>
+<!-- ROADMAP -->
+<section>
+  <div class="container">
+    <span class="section-num">04 · Roadmap</span>
+    <h2>4 semanas para <em>cerrar el grifo</em></h2>
+    <p class="sub">Antes de escalar otro euro en Meta o Google.</p>
 
-    <h3>Impacto estimado conjunto</h3>
-    <ul>
-      <li><strong>CVR home → checkout:</strong> +15-25%</li>
-      <li><strong>AOV:</strong> +€20-40</li>
-      <li><strong>LTV:</strong> +10-15%</li>
-    </ul>
+    <div class="roadmap">
+      <div class="week">
+        <div class="lbl">Semana 1</div>
+        <div class="name">Stop the bleed</div>
+        <ul>
+          <li>Reparar página Packs</li>
+          <li>H1 home experiencial</li>
+          <li>Selector visual de tallas</li>
+          <li>Order bump en PDP + carrito</li>
+          <li>Popup exit-intent</li>
+          <li>Unificar regla envío gratis</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="lbl">Semana 2</div>
+        <div class="name">Trust &amp; AOV</div>
+        <ul>
+          <li>Decidir devolución gratis vs. honesta</li>
+          <li>Unificar mensaje almohadas</li>
+          <li>Barra de progreso a regalo</li>
+          <li>Garantía 10 años unificada</li>
+          <li>Bundle en PDP colchón</li>
+          <li>Pack 2× en PDP almohada</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="lbl">Semana 3</div>
+        <div class="name">Filtros &amp; jerarquía</div>
+        <ul>
+          <li>3 héroes en PLP Colchones</li>
+          <li>Filtros por problema</li>
+          <li>Filtros chip en PLP Almohadas</li>
+          <li>Quiz finder sobre el grid</li>
+          <li>Trust micro-copy en cards</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="lbl">Semana 4</div>
+        <div class="name">Replicar Lea</div>
+        <ul>
+          <li>H1 experiencial en 5 PDPs colchón</li>
+          <li>UGC video en cada PDP</li>
+          <li>Bundle "Vístelo completo"</li>
+          <li>A/B test hero del home</li>
+          <li>Hoja ruta catálogo textil</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <blockquote>El catálogo de Dormideo ya vende a pesar del funnel. Cuando el funnel acompañe al catálogo, no hay competidor en España preparado para ese combo.</blockquote>
+<!-- METHOD -->
+<section>
+  <div class="container">
+    <span class="section-num">05 · Método</span>
+    <h2>Cómo se evalúa esto</h2>
+    <div class="method-box">
+      <p>Esta auditoría aplica el método <strong>Billion Dollar Websites</strong> (Dylan Ander), usado para optimizar más de mil millones de dólares en ecommerce. Tres ideas centrales:</p>
+      <p><strong>El Cocodrilo y el Juez.</strong> El visitante tiene dos mentes: una rápida e instintiva que compra si reconoce, confía y no se complica; y una lenta y crítica que despierta con cualquier fricción y casi nunca compra. El trabajo de la web es dejar comer al cocodrilo y no despertar al juez.</p>
+      <p><strong>Cinco Pilares.</strong> Cada elemento del site pertenece a uno: Oferta · UVPs · Copy · Creative · UI/UX. La auditoría revisa cada nivel contra los cinco.</p>
+      <p><strong>Cuadrantes de Tráfico.</strong> Antes de escalar ads, mirar dónde está el negocio en la matriz tráfico × CVR. <strong>Dormideo está en alto tráfico × CVR media-baja: la web es la palanca, no las ads.</strong></p>
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div class="wordmark"><b>Josep</b> Cid</div>
-    <div>Auditoría CRO · Dormideo · Mayo 2026 · Método Billion Dollar Websites (Dylan Ander)</div>
+    <div class="wm"><b>Josep</b> Cid</div>
+    <div>Auditoría CRO · Dormideo · Mayo 2026</div>
   </div>
 </footer>
 
