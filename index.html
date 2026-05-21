@@ -333,7 +333,7 @@
       <div class="score-cell crit">
         <span class="lvl">Sección 6</span>
         <span class="nm">Packs</span>
-        <span class="st">🔴 Mal · página vacía</span>
+        <span class="st">🔴 Mal · carga lenta</span>
       </div>
       <div class="score-cell crit">
         <span class="lvl">Sección 7</span>
@@ -353,7 +353,7 @@
   <div class="container">
     <span class="section-num">03 · Lo urgente</span>
     <h2>Las <em>10 cosas</em> que nos disparan el ACoS</h2>
-    <p class="sub">Por cada visita que pagamos en ads y se va sin comprar, el coste por venta sube. Estos son los puntos por los que se nos escapa esa gente. Ordenados por lo que más cuesta. Cada uno se puede arreglar en una semana o menos.</p>
+    <p class="sub">Por cada visita que pagamos en ads y se va sin comprar, el coste por venta sube. Estos son los puntos por los que sospechamos que se nos escapa esa gente. <strong>Son hipótesis basadas en lo que se ve en la web y en patrones que se repiten en este sector</strong> — habría que cruzarlas con la analítica (Hotjar / GA / grabaciones) antes de tirar a por las más gordas. Ordenadas por sospecha de impacto.</p>
 
     <table class="findings">
       <thead>
@@ -368,62 +368,62 @@
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Packs</td>
-          <td class="what">La página de Packs sale vacía. Cero productos.</td>
-          <td>Es un fallo de configuración del catálogo en Shopify. Hay que mirar el tag o filtro de la colección. Se arregla hoy.</td>
+          <td class="what">Hecho: la página de Packs tarda mucho en cargar (los bundles llegan por JS y no salen hasta unos segundos después). Hipótesis: parte del tráfico cierra antes de que renderice, sobre todo en móvil con red lenta.</td>
+          <td>Mirar tiempo de carga real con Lighthouse / GA en móvil. Probables vías: SSR de los bundles, lazy-load del bloque inferior pero carga prioritaria del primer pack, o reducir peso del JS de la app que los pinta.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Devolución</td>
-          <td class="what">Decimos "30 noches de prueba" pero el cliente paga 50€ para devolver, y las almohadas no se pueden devolver pese a que la FAQ dice que sí.</td>
-          <td>Dos opciones: a) cubrimos la devolución del primer colchón (lo hace Emma), b) reescribimos la promesa para que diga la verdad ("cambio fácil por 50€"). Y en almohadas, unificar FAQ + política.</td>
+          <td class="what">Hecho: vendemos "30 noches de prueba" pero la política dice que el cliente paga 50€ por devolver el colchón, y las almohadas no admiten devolución pese a que la FAQ del PDP dice lo contrario. Hipótesis: cuando el cliente lo descubre (post-venta o en reseñas) se cae la confianza y baja la recompra.</td>
+          <td>Dos caminos a considerar: a) cubrir la devolución del primer colchón (es lo que hace Emma) y mantener la promesa tal cual; b) reescribir la promesa para que case con la política ("cambio fácil por 50€"). Y en almohadas, alinear FAQ con política. La decisión es estratégica, no técnica.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Ficha colchón</td>
-          <td class="what">Para elegir la talla hay un desplegable con 29 medidas. La gente se atasca y se va.</td>
-          <td>Dos pasos con botones grandes: primero el ancho (80, 90, 105, 135, 150, 180, 200), luego el largo (180, 190, 200). El precio se actualiza al lado.</td>
+          <td class="what">Hecho: para elegir talla hay un desplegable con 29 medidas. Hipótesis: parte del tráfico abandona la ficha aquí (especialmente móvil) — habría que mirar en Hotjar / grabaciones de sesión cuánta gente abre el desplegable y se va.</td>
+          <td>Si la hipótesis se confirma, probar selector visual en 2 pasos: ancho con botones (80, 90, 105, 135, 150, 180, 200), después largo (180, 190, 200), precio dinámico al lado. Es un test A/B claro.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Ficha + Carrito</td>
-          <td class="what">No le ofrecemos al cliente añadir extras antes de pagar. Solo hay un carrusel estático de "Complementa tu pedido" que casi nadie ve.</td>
-          <td>Una casilla bien visible encima del botón de comprar: <em>"☑ Añade el protector TENCEL por 19€ (te llevas 8€ de descuento)"</em>. La marca entre el 25 y 40% de la gente. Son +20€ de ticket medio.</td>
+          <td class="what">Hecho: no hay casilla "añadir extras" antes de pagar; solo un carrusel estático "Complementa tu pedido". Hipótesis: estamos perdiendo ticket medio en cada compra de colchón — el cross-sell pasivo convierte mucho menos que un bump activo.</td>
+          <td>Probar una casilla encima del botón de comprar: <em>"☑ Añade el protector TENCEL por 19€ (te llevas 8€ de descuento)"</em>. En benchmark del sector se ve take-rate del 25-40% — para Dormideo habría que verlo en piloto antes de extrapolar.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Home</td>
-          <td class="what">El titular dice "Rebajas de Primavera". Pero en RRSS lo que peta es <strong>"sin tiendas, precio mitad"</strong>. La web no recoge nada de eso.</td>
-          <td>Cambiar el titular del home para decir lo mismo que decimos en TikTok: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar."</em> · <em>"Fabricamos colchones desde 1998. Los vendemos sin tienda en medio."</em> Y debajo: <em>"Lo que en una tienda física cuesta 800€, en Dormideo cuesta 400€"</em>.</td>
+          <td class="what">Hecho: el titular del home dice "Rebajas de Primavera"; en RRSS lo que más mueve es <strong>"sin tiendas, precio mitad"</strong>. Hipótesis: el tráfico que viene calentito de TikTok aterriza en un mensaje distinto al que le ha hecho click, y eso enfría.</td>
+          <td>Probar A/B con titulares que extienden el discurso de RRSS: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar."</em> · <em>"Fabricamos desde 1998. Los vendemos sin tienda en medio."</em> Validar si el bounce baja en sesiones que vienen de Meta/TikTok.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Ropa de cama</td>
-          <td class="what">Solo tenemos 4 productos en toda la sección. Sin juegos de sábanas, sin nórdicos, sin edredones. La gente que compra colchón se gastaría 80-120€ extra en textil y no encuentra qué llevarse.</td>
-          <td>Plan de catálogo: 8 productos nuevos en 90 días (sábanas algodón en 3 colores, sábanas TENCEL premium, nórdico 4 estaciones, fundas nórdicas, 2 toppers). Y crear un pack "Vístelo completo" dentro de la ficha del colchón.</td>
+          <td class="what">Hecho: la sección tiene 4 productos (protectores y fundas), sin juegos de sábanas, sin nórdicos, sin edredones. Hipótesis: el cliente que se gasta 300€ en colchón está dispuesto a sumar 60-120€ extra en textil y no encuentra catálogo donde gastarlos.</td>
+          <td>Posible plan: ampliar catálogo (sábanas algodón en 3 colores, sábanas TENCEL premium, nórdico 4 estaciones, fundas nórdicas, 2 toppers). Mientras llega catálogo nuevo, ofrecer pack "Vístelo completo" dentro de la ficha del colchón con los SKUs que ya tenemos. Tamaño del impacto a confirmar con datos.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Carrito</td>
-          <td class="what">Cuando alguien llega al carrito ya casi compra, pero ahí no le recordamos nada: ni 30 noches, ni envío rápido, ni garantía. Tampoco hay barra de "te falta X para regalo".</td>
-          <td>Debajo del resumen, una tira con los 5 iconos clave (30 noches, fábrica, 24/72h, garantía, financiación). Y arriba una barra: <em>"Te faltan 47€ para llevarte una funda gratis"</em>.</td>
+          <td class="what">Hecho: el carrito no recuerda las UVPs (30 noches, garantía, envío rápido) ni tiene barra de "te falta X para regalo". Hipótesis: pequeñas dudas de última hora se quedan sin respuesta justo donde más caro pagamos perder al cliente.</td>
+          <td>Probar tira con los 5 iconos clave debajo del resumen + barra <em>"Te faltan 47€ para llevarte una funda gratis"</em>. Medir si el ticket medio sube y si baja el abandono de carrito.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Listado colchones</td>
-          <td class="what">19 colchones juntos sin que se entienda cuál elegir. Los filtros son por firmeza del 30 al 100 — la gente no sabe qué firmeza quiere, sabe que le duele la espalda.</td>
-          <td>Arriba del listado, 3 colchones destacados con etiqueta (Más vendido / Premium / Más barato). Filtros traducidos a lo que el cliente busca: dolor de espalda / cervicales / calor / peso pareja.</td>
+          <td class="what">Hecho: 19 colchones juntos sin jerarquía clara; los filtros son por firmeza del 30 al 100. Hipótesis: el cliente medio no sabe qué firmeza quiere — sabe el problema que tiene (espalda, calor, etc.) — y eso enlentece la decisión.</td>
+          <td>Probar destacar 3 colchones arriba (Más vendido / Premium / Más barato) y traducir filtros al lenguaje del cliente: dolor de espalda · cervicales · calor · peso pareja. Buscar señal en tiempo-hasta-ficha-de-producto.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Almohadas</td>
-          <td class="what">El listado no tiene filtros por tipo (cervical, viscoelástica, fresca), y las fichas no ofrecen llevarse 2 — pese a que la mayoría las compra en pareja (cama de matrimonio).</td>
-          <td>Botones de filtro arriba del listado (Para dormir de lado / Boca arriba / Cervicales / Frescas). En cada ficha: <em>"1 unidad 99€ · 2 unidades 169€ (ahorras 29€)"</em>.</td>
+          <td class="what">Hecho: el listado no tiene filtros por tipo (cervical, viscoelástica, fresca) y las fichas no ofrecen pack 2×. Hipótesis: dado que la mayoría las compra en pareja (cama de matrimonio), estamos dejando ticket medio sin recoger.</td>
+          <td>Botones de filtro arriba del listado (Para dormir de lado / Boca arriba / Cervicales / Frescas). Probar pack 2× en cada ficha: <em>"1 unidad 99€ · 2 unidades 169€ (ahorras 29€)"</em>.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Todo el site</td>
-          <td class="what">En la ficha de colchón pone "Envío Prime GRATIS" y en la ficha del protector pone "Envío gratis a partir de 60€". El cliente se queda con la duda de cuál es la regla real.</td>
-          <td>Una sola regla en todo el site, contada igual en todas partes.</td>
+          <td class="what">Hecho: la ficha de colchón dice "Envío Prime GRATIS"; la del protector, "Envío gratis a partir de 60€". Hipótesis: cuando el cliente cambia de ficha y ve dos reglas distintas, le entra duda — y la duda es enemiga del cierre.</td>
+          <td>Unificar la regla y comunicarla igual en todas partes. La regla concreta (umbral o gratis sin umbral) la decide el negocio.</td>
         </tr>
       </tbody>
     </table>
@@ -434,7 +434,7 @@
   <div class="container">
     <span class="section-num">04 · Lo importante pero menos urgente</span>
     <h2>Cosas que también suman</h2>
-    <p class="sub">No nos hacen perder ventas como las de arriba, pero las atacamos después.</p>
+    <p class="sub">Mismo criterio: hipótesis basadas en lo que se ve en la web. No mueven la aguja como las de arriba, las atacamos después.</p>
 
     <table class="findings">
       <thead>
@@ -516,12 +516,12 @@
         <div class="lbl">Semana 1</div>
         <div class="name">Lo más urgente</div>
         <ul>
-          <li>Arreglar la página de Packs</li>
-          <li>Cambiar el titular del home (anti-tienda)</li>
-          <li>Selector de tallas con botones</li>
-          <li>Casilla de extras antes de pagar</li>
+          <li>Medir y acelerar la carga de Packs</li>
+          <li>Test A/B del titular del home</li>
+          <li>Selector de tallas con botones (test)</li>
+          <li>Piloto de casilla de extras</li>
           <li>Popup de "antes de irte"</li>
-          <li>Una sola regla de envío gratis</li>
+          <li>Unificar regla de envío gratis</li>
         </ul>
       </div>
       <div class="week">
