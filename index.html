@@ -352,7 +352,7 @@
 <section>
   <div class="container">
     <span class="section-num">03 · Lo urgente</span>
-    <h2>Las <em>10 cosas</em> que nos disparan el ACoS</h2>
+    <h2>Las <em>9 cosas</em> que nos disparan el ACoS</h2>
     <p class="sub">Por cada visita que pagamos en ads y se va sin comprar, el coste por venta sube. Estos son los puntos por los que sospechamos que se nos escapa esa gente. <strong>Son hipótesis basadas en lo que se ve en la web y en patrones que se repiten en este sector</strong> — habría que cruzarlas con la analítica (Hotjar / GA / grabaciones) antes de tirar a por las más gordas. Ordenadas por sospecha de impacto.</p>
 
     <table class="findings">
@@ -385,45 +385,39 @@
         </tr>
         <tr>
           <td class="sev">🔴</td>
-          <td class="lvl">Ficha + Carrito</td>
-          <td class="what">Hecho: no hay casilla "añadir extras" antes de pagar; solo un carrusel estático "Complementa tu pedido". Hipótesis: estamos perdiendo ticket medio en cada compra de colchón — el cross-sell pasivo convierte mucho menos que un bump activo.</td>
-          <td>Probar una casilla encima del botón de comprar: <em>"☑ Añade el protector TENCEL por 19€ (te llevas 8€ de descuento)"</em>. En benchmark del sector se ve take-rate del 25-40% — para Dormideo habría que verlo en piloto antes de extrapolar.</td>
+          <td class="lvl">Carrito</td>
+          <td class="what">Hecho: el cajón del carrito muestra solo el producto y el total, sin ofrecer extras (protector, almohada, funda). En la ficha sí hay "Complementa tu pedido" — y por lo que comentas, está funcionando bien (clientes que antes no se llevaban protector ahora lo añaden). La oportunidad está en replicar esa palanca también en el carrito.</td>
+          <td>Probar un bloque "Añade antes de pagar" dentro del cajón del carrito con 2-3 SKUs complementarios al colchón que está añadiendo (protector de la talla correcta, almohada, funda). Versión casilla rápida o tarjetas con "+ Añadir".</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Home</td>
-          <td class="what">Hecho: el titular del home dice "Rebajas de Primavera"; en RRSS lo que más mueve es <strong>"sin tiendas, precio mitad"</strong>. Hipótesis: el tráfico que viene calentito de TikTok aterriza en un mensaje distinto al que le ha hecho click, y eso enfría.</td>
-          <td>Probar A/B con titulares que extienden el discurso de RRSS: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar."</em> · <em>"Fabricamos desde 1998. Los vendemos sin tienda en medio."</em> Validar si el bounce baja en sesiones que vienen de Meta/TikTok.</td>
+          <td class="what">Hecho: el titular del home dice "Rebajas de Primavera / Tenemos los mejores precios porque somos fabricantes". El sub sí toca la palanca "fabricantes". Hipótesis: parte del tráfico de RRSS llega con la idea "sin tiendas, precio mitad" y aterriza en una promo estacional como gancho principal — podría haber margen para que el titular hable de eso directamente. Es a testar, no a dar por hecho.</td>
+          <td>Probar A/B contra variantes que pongan el ángulo anti-tienda arriba: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar."</em> Medir conversión y bounce segmentado por canal de origen. Si gana la versión actual, queda confirmado que el camino es seguir como está.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Ropa de cama</td>
-          <td class="what">Hecho: la sección tiene 4 productos (protectores y fundas), sin juegos de sábanas, sin nórdicos, sin edredones. Hipótesis: el cliente que se gasta 300€ en colchón está dispuesto a sumar 60-120€ extra en textil y no encuentra catálogo donde gastarlos.</td>
-          <td>Posible plan: ampliar catálogo (sábanas algodón en 3 colores, sábanas TENCEL premium, nórdico 4 estaciones, fundas nórdicas, 2 toppers). Mientras llega catálogo nuevo, ofrecer pack "Vístelo completo" dentro de la ficha del colchón con los SKUs que ya tenemos. Tamaño del impacto a confirmar con datos.</td>
+          <td class="what">Hecho: hoy la sección muestra 4 productos (protectores y fundas). Tú comentas que antes había más y se han caído — primero hay que averiguar el porqué (stock, despublicado, decisión, problema de catálogo). Hipótesis: si vuelve la gama habitual + se ofrece pack textil en la ficha del colchón, podría subir ticket medio.</td>
+          <td>Paso 1: diagnosticar qué SKUs se cayeron y por qué. Paso 2: reactivar lo que tenga sentido o decidir si toca catálogo nuevo. Paso 3: ofrecer pack "Vístelo completo" en la ficha del colchón con lo que haya disponible — esto se puede empezar ya con los 4 SKUs actuales.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Carrito</td>
-          <td class="what">Hecho: el carrito no recuerda las UVPs (30 noches, garantía, envío rápido) ni tiene barra de "te falta X para regalo". Hipótesis: pequeñas dudas de última hora se quedan sin respuesta justo donde más caro pagamos perder al cliente.</td>
-          <td>Probar tira con los 5 iconos clave debajo del resumen + barra <em>"Te faltan 47€ para llevarte una funda gratis"</em>. Medir si el ticket medio sube y si baja el abandono de carrito.</td>
+          <td class="what">Hecho: el cajón del carrito muestra solo producto + total + botón "Pagar pedido", sin recordar 30 noches de prueba, garantía, ni envío gratis (que en colchones siempre aplica porque superan los 60€). Hipótesis: pequeñas dudas de última hora se quedan sin respuesta justo donde más caro pagamos perder al cliente.</td>
+          <td>Probar tira con los iconos clave debajo del resumen (30 noches · fábrica · 24/72h · garantía · financiación). Medir si baja el abandono de carrito.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Listado colchones</td>
-          <td class="what">Hecho: 19 colchones juntos sin jerarquía clara; los filtros son por firmeza del 30 al 100. Hipótesis: el cliente medio no sabe qué firmeza quiere — sabe el problema que tiene (espalda, calor, etc.) — y eso enlentece la decisión.</td>
-          <td>Probar destacar 3 colchones arriba (Más vendido / Premium / Más barato) y traducir filtros al lenguaje del cliente: dolor de espalda · cervicales · calor · peso pareja. Buscar señal en tiempo-hasta-ficha-de-producto.</td>
+          <td class="what">Hecho: 19 colchones juntos sin jerarquía clara; el filtro principal es firmeza del 30 al 100. Matiz importante: la firmeza ideal es subjetiva (mismo dolor de espalda, persona A necesita firme y persona B blando). Hipótesis: la falta de jerarquía visual + filtros expresados en lenguaje técnico puede alargar la decisión, sobre todo en compradores primerizos.</td>
+          <td>Probar dos cosas en paralelo: 1) destacar 3 colchones arriba (Más vendido / Premium / Más barato) para quien no quiere pensar; 2) añadir un cuestionario corto que pregunte postura, peso y preferencia firme/blando, y recomiende. No sustituir el filtro de firmeza — sumar otra vía de decisión.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Almohadas</td>
-          <td class="what">Hecho: el listado no tiene filtros por tipo (cervical, viscoelástica, fresca) y las fichas no ofrecen pack 2×. Hipótesis: dado que la mayoría las compra en pareja (cama de matrimonio), estamos dejando ticket medio sin recoger.</td>
-          <td>Botones de filtro arriba del listado (Para dormir de lado / Boca arriba / Cervicales / Frescas). Probar pack 2× en cada ficha: <em>"1 unidad 99€ · 2 unidades 169€ (ahorras 29€)"</em>.</td>
-        </tr>
-        <tr>
-          <td class="sev">🔴</td>
-          <td class="lvl">Todo el site</td>
-          <td class="what">Hecho: la ficha de colchón dice "Envío Prime GRATIS"; la del protector, "Envío gratis a partir de 60€". Hipótesis: cuando el cliente cambia de ficha y ve dos reglas distintas, le entra duda — y la duda es enemiga del cierre.</td>
-          <td>Unificar la regla y comunicarla igual en todas partes. La regla concreta (umbral o gratis sin umbral) la decide el negocio.</td>
+          <td class="what">Hecho: el listado no tiene filtros por tipo (cervical, viscoelástica, fresca). En la ficha sí se pueden añadir 2 unidades con el selector de cantidad, pero <strong>no hay incentivo</strong> para hacerlo (no hay descuento por volumen visible). Hipótesis: dado que muchas se compran en pareja (cama de matrimonio), un descuento explícito por llevarse 2 podría subir el ticket medio.</td>
+          <td>Botones de filtro arriba del listado (Para dormir de lado / Boca arriba / Cervicales / Frescas). En la ficha probar mostrar el ahorro al elegir 2: <em>"1 unidad 99€ · 2 unidades 169€ (ahorras 29€)"</em>, en vez de dejarlo al selector de cantidad sin incentivo.</td>
         </tr>
       </tbody>
     </table>
@@ -446,12 +440,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="sev">🟡</td>
-          <td class="lvl">Home</td>
-          <td class="what">La foto principal es un render 3D del colchón en una habitación vacía. Es frío, no transmite nada.</td>
-          <td>Probar a cambiarla por una persona descansando, o por un corte del colchón que enseñe las capas.</td>
-        </tr>
         <tr>
           <td class="sev">🟡</td>
           <td class="lvl">Home</td>
@@ -519,9 +507,9 @@
           <li>Medir y acelerar la carga de Packs</li>
           <li>Test A/B del titular del home</li>
           <li>Selector de tallas con botones (test)</li>
-          <li>Piloto de casilla de extras</li>
+          <li>Bloque "Añade antes de pagar" en el cajón del carrito</li>
           <li>Popup de "antes de irte"</li>
-          <li>Unificar regla de envío gratis</li>
+          <li>Diagnosticar caída de SKUs en ropa de cama</li>
         </ul>
       </div>
       <div class="week">
