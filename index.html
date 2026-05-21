@@ -352,8 +352,8 @@
         <tr>
           <td class="sev">🔴</td>
           <td class="lvl">Selector de talla</td>
-          <td class="what">Hecho: en todas las fichas de colchón la talla se elige con un desplegable de 29 opciones. Hipótesis: parte del tráfico abandona aquí, especialmente móvil — validar con Hotjar (¿cuántos abren el dropdown y cierran la pestaña?).</td>
-          <td>Si Hotjar lo confirma, probar selector visual en 2 pasos: ancho con botones (80, 90, 105, 135, 150, 180, 200), después largo (180, 190, 200), precio dinámico al lado. Test A/B en una ficha primero (Plus Hybrid Top tiene el volumen ideal para detectar diferencia rápido).</td>
+          <td class="what">Hecho: en todas las fichas de colchón la talla se elige con un desplegable de 29 opciones. Benchmark de competidores (verificado): Emma usa dropdown único como nosotros; Maxcolchon usa botones en grid con 24 medidas visibles. No hay consenso del sector — hay grandes en los dos bandos. Hipótesis: con 29 opciones el dropdown podría estar frenando en móvil, validar con Hotjar.</td>
+          <td>No es "dropdown está mal", es "hay otra opción válida que conviene testar". A/B en una ficha con volumen (Plus Hybrid Top) entre: a) dropdown actual; b) botones en grid estilo Maxcolchon; c) selector en 2 pasos ancho→largo. Si la diferencia es <2% no merece migrar todo el catálogo.</td>
         </tr>
         <tr>
           <td class="sev">🔴</td>
@@ -421,8 +421,8 @@
         <tr>
           <td class="sev">🟡</td>
           <td class="lvl">Ficha Sofá Lea</td>
-          <td class="what">Datos: 168.202 sesiones → 0,25% checkout. A primera vista parece leak, pero es producto relativamente nuevo: el tráfico inicial trae mucho "venir a ver qué es esto" más que intención de compra. Lo que toca aquí no es arreglar, es monitorizar.</td>
-          <td>Mirar evolución de conversión semana a semana desde el lanzamiento. Si tiende a subir, es patrón normal de producto en fase de descubrimiento. Si lleva semanas plana en 0,25%, ahí sí toca abrir sesión específica (fuente del tráfico, scroll-depth, variantes agotadas).</td>
+          <td class="what">Datos: 168.202 sesiones → 0,25% checkout. Es producto relativamente nuevo, así que parte del tráfico es de descubrimiento (gente que viene a ver qué es esto, no a comprar). Eso explica algo. Lo que no toca es depender de la fuente del tráfico para que convierta — la ficha debería cerrar al frío también.</td>
+          <td>En vez de "averiguar de dónde viene", blindar la ficha para que funcione con tráfico de cualquier temperatura: vídeo corto arriba que explica el producto en 15s (no esperar al scroll), comparativa de precio anti-tienda visible sin scroll, UGC y reseñas arriba, FAQ con las dudas frías más típicas. En paralelo monitorizar conversión semana a semana — si sube con el tiempo solo, mejor; si no, la ficha es la palanca.</td>
         </tr>
         <tr>
           <td class="sev">🟡</td>
