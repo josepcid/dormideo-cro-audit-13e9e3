@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dormideo · Auditoría CRO</title>
-<meta name="description" content="Auditoría CRO de dormideo.com — hallazgos críticos, scorecard por nivel y roadmap de 4 semanas.">
+<title>Dormideo · Auditoría web</title>
+<meta name="description" content="Auditoría interna de dormideo.com — cosas que perder ventas, scorecard por nivel y plan de 4 semanas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
     --ink-faint: #828282;
     --line: #121212;
     --line-soft: #e5e7eb;
-    --brand: #2d36c8;       /* dormideo cobalt */
+    --brand: #2d36c8;
     --brand-deep: #2d307a;
     --brand-soft: #edf2fb;
     --gold: #fad055;
@@ -40,7 +40,6 @@
   }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
-  /* HERO */
   .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }
   .hero-meta {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
@@ -61,14 +60,12 @@
   }
   .hero .tldr strong { color: var(--ink); font-weight: 600; }
 
-  /* IMPACT CHIPS */
   .impact {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 12px; margin-top: 32px;
   }
   .impact-chip {
     background: var(--brand-soft);
-    border: 1px solid var(--brand-soft);
     border-left: 3px solid var(--brand);
     padding: 14px 16px;
   }
@@ -86,7 +83,6 @@
     .impact { grid-template-columns: 1fr; }
   }
 
-  /* SECTION */
   section { padding: 48px 0; border-bottom: 1px solid var(--line-soft); }
   .section-num {
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -104,9 +100,8 @@
     max-width: 720px; margin-bottom: 28px;
   }
 
-  /* SCORECARD GRID */
   .scorecard {
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
   .score-cell {
@@ -137,7 +132,6 @@
     .scorecard { grid-template-columns: 1fr; }
   }
 
-  /* FINDINGS TABLE */
   .findings { width: 100%; border-collapse: collapse; font-size: 14px; }
   .findings thead {
     background: var(--paper);
@@ -158,17 +152,12 @@
     color: var(--ink-soft);
   }
   .findings td.sev {
-    width: 70px; font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.5px;
+    width: 50px; font-size: 18px;
   }
-  .findings td.sev.crit { color: var(--red); }
-  .findings td.sev.mid { color: var(--amber); }
   .findings td.lvl {
     width: 110px; color: var(--brand); font-weight: 600;
   }
   .findings td.what { color: var(--ink); font-weight: 500; }
-  .findings td.fix { color: var(--ink-soft); }
   .findings tr:hover { background: var(--paper); }
   @media (max-width: 720px) {
     .findings, .findings tbody, .findings tr, .findings td {
@@ -179,12 +168,11 @@
     .findings tr {
       padding: 16px 0; border-bottom: 1px solid var(--line-soft);
     }
-    .findings td.sev::before { content: attr(data-sev); }
+    .findings td.sev { font-size: 22px; }
     .findings td.lvl { font-size: 11px; text-transform: uppercase; }
     .findings td.what { font-size: 16px; margin: 4px 0; }
   }
 
-  /* ROADMAP */
   .roadmap {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 12px; margin-top: 24px;
@@ -215,17 +203,6 @@
     .roadmap { grid-template-columns: 1fr; }
   }
 
-  /* METHOD BOX */
-  .method-box {
-    background: var(--paper);
-    padding: 24px 28px;
-    border-left: 3px solid var(--brand);
-    margin-top: 20px;
-  }
-  .method-box p { color: var(--ink-soft); margin-bottom: 10px; }
-  .method-box strong { color: var(--ink); }
-
-  /* FOOTER */
   footer {
     padding: 48px 0; text-align: center;
     color: var(--ink-faint);
@@ -253,61 +230,60 @@
 <header class="hero">
   <div class="container">
     <div class="hero-meta">
-      <span>Auditoría CRO · Dormideo</span>
+      <span>Auditoría interna · Dormideo</span>
       <span class="right">Mayo 2026</span>
     </div>
-    <h1>De 18M€ <em>al siguiente nivel</em></h1>
+    <h1>Cerramos 18M€.<br><em>Vamos a por los 30.</em></h1>
     <p class="tldr">
-      Dormideo ha cerrado <strong>18M€ en 2025</strong> petando en RRSS con un ángulo claro: <strong>fabricante directo, sin tiendas en medio, precio mitad vs retail</strong>. Esta auditoría no busca arreglar la web — busca los puntos donde ese ángulo se diluye o se filtra dinero, y proponer cómo cerrar el grifo sin tocar la palanca de crecimiento.
+      La web ya vende — pero hay sitios donde se nos cae gente, donde no aprovechamos lo que nos hace fuertes (fábrica propia, sin tiendas en medio, precio mitad), y donde dejamos dinero sobre la mesa. <strong>Esto no es la web rota. Es lo que falta para llegar al siguiente número.</strong>
     </p>
     <div class="impact">
       <div class="impact-chip">
         <span class="num">+15-25%</span>
-        <span class="lbl">CVR home → checkout</span>
+        <span class="lbl">Más ventas (misma visita)</span>
       </div>
       <div class="impact-chip">
         <span class="num">+20-40€</span>
-        <span class="lbl">AOV</span>
+        <span class="lbl">Más ticket medio</span>
       </div>
       <div class="impact-chip">
         <span class="num">+10-15%</span>
-        <span class="lbl">LTV</span>
+        <span class="lbl">Más recompra</span>
       </div>
     </div>
   </div>
 </header>
 
-<!-- LO QUE FUNCIONA -->
 <section>
   <div class="container">
-    <span class="section-num">00 · Punto de partida</span>
-    <h2>Lo que <em>ya está ganando</em></h2>
-    <p class="sub">Esta auditoría asume el trabajo bien hecho. Antes de proponer cambios conviene fijar qué no se toca.</p>
+    <span class="section-num">01 · Lo que ya va bien</span>
+    <h2>No tocamos <em>lo que funciona</em></h2>
+    <p class="sub">Antes de cambiar nada, fijamos qué nos está dando los 18M€.</p>
     <div class="scorecard">
       <div class="score-cell ok">
-        <span class="lvl">Escala</span>
+        <span class="lvl">Cifras</span>
         <span class="nm">18M€ en 2025</span>
-        <span class="st">🟢 Crecimiento sostenido</span>
-      </div>
-      <div class="score-cell ok">
-        <span class="lvl">Posicionamiento</span>
-        <span class="nm">Anti-tienda</span>
-        <span class="st">🟢 Diferenciación clara</span>
+        <span class="st">🟢 Crecemos</span>
       </div>
       <div class="score-cell ok">
         <span class="lvl">RRSS</span>
         <span class="nm">TikTok + Meta</span>
-        <span class="st">🟢 Motor de demanda</span>
+        <span class="st">🟢 Nos traen tráfico</span>
+      </div>
+      <div class="score-cell ok">
+        <span class="lvl">Mensaje</span>
+        <span class="nm">Anti-tienda física</span>
+        <span class="st">🟢 La gente lo pilla</span>
       </div>
       <div class="score-cell ok">
         <span class="lvl">Producto</span>
         <span class="nm">Fábrica propia</span>
-        <span class="st">🟢 Precio mitad creíble</span>
+        <span class="st">🟢 Precio mitad real</span>
       </div>
       <div class="score-cell ok">
-        <span class="lvl">Prueba social</span>
+        <span class="lvl">Reseñas</span>
         <span class="nm">4,8★ · 250k clientes</span>
-        <span class="st">🟢 Activo defensivo</span>
+        <span class="st">🟢 Defensa fuerte</span>
       </div>
       <div class="score-cell ok">
         <span class="lvl">Operativa</span>
@@ -315,294 +291,273 @@
         <span class="st">🟢 Cierre suave</span>
       </div>
     </div>
-    <p class="sub" style="margin-top:24px">
-      Lo siguiente son los puntos donde el ángulo no se aprovecha al 100% en la web, o donde hay filtraciones operativas (catálogo, devolución, AOV). Nada que invalide lo que funciona — todo para multiplicarlo.
-    </p>
   </div>
 </section>
 
-<!-- SCORECARD -->
 <section>
   <div class="container">
-    <span class="section-num">01 · Scorecard</span>
-    <h2>Estado por nivel</h2>
-    <p class="sub">9 niveles auditados. 3 críticos · 5 con mejora · 1 sólido (modelo a replicar).</p>
+    <span class="section-num">02 · Cómo estamos por sección</span>
+    <h2>De un vistazo</h2>
+    <p class="sub">9 partes de la web revisadas. 3 mal, 5 mejorables, 1 que ya está bien y vale como modelo para el resto.</p>
     <div class="scorecard">
       <div class="score-cell mid">
-        <span class="lvl">Nivel 1</span>
-        <span class="nm">Homepage</span>
-        <span class="st">🟡 Mejorar</span>
+        <span class="lvl">Sección 1</span>
+        <span class="nm">Home</span>
+        <span class="st">🟡 Mejorable</span>
       </div>
       <div class="score-cell mid">
-        <span class="lvl">Nivel 2</span>
-        <span class="nm">PLP Colchones</span>
-        <span class="st">🟡 Mejorar</span>
+        <span class="lvl">Sección 2</span>
+        <span class="nm">Listado colchones</span>
+        <span class="st">🟡 Mejorable</span>
       </div>
       <div class="score-cell mid">
-        <span class="lvl">Nivel 3a</span>
-        <span class="nm">PDP Colchón</span>
-        <span class="st">🟡 Mejorar</span>
+        <span class="lvl">Sección 3a</span>
+        <span class="nm">Ficha colchón</span>
+        <span class="st">🟡 Mejorable</span>
       </div>
       <div class="score-cell ok">
-        <span class="lvl">Nivel 3b</span>
-        <span class="nm">PDP Sofá Lea</span>
-        <span class="st">🟢 Sólido · modelo</span>
+        <span class="lvl">Sección 3b</span>
+        <span class="nm">Ficha Sofá Lea</span>
+        <span class="st">🟢 Bien (modelo)</span>
       </div>
       <div class="score-cell mid">
-        <span class="lvl">Nivel 4</span>
+        <span class="lvl">Sección 4</span>
         <span class="nm">Almohadas</span>
-        <span class="st">🟡 Mejorar</span>
+        <span class="st">🟡 Mejorable</span>
       </div>
       <div class="score-cell crit">
-        <span class="lvl">Nivel 5</span>
+        <span class="lvl">Sección 5</span>
         <span class="nm">Ropa de cama</span>
-        <span class="st">🔴 Crítico</span>
+        <span class="st">🔴 Mal</span>
       </div>
       <div class="score-cell crit">
-        <span class="lvl">Nivel 6</span>
+        <span class="lvl">Sección 6</span>
         <span class="nm">Packs</span>
-        <span class="st">🔴 Crítico · página vacía</span>
+        <span class="st">🔴 Mal · página vacía</span>
       </div>
       <div class="score-cell crit">
-        <span class="lvl">Nivel 7</span>
+        <span class="lvl">Sección 7</span>
         <span class="nm">Carrito</span>
-        <span class="st">🔴 Crítico</span>
+        <span class="st">🔴 Mal</span>
       </div>
       <div class="score-cell crit">
-        <span class="lvl">Nivel 8</span>
-        <span class="nm">Trust / Devolución</span>
-        <span class="st">🔴 Crítico</span>
+        <span class="lvl">Sección 8</span>
+        <span class="nm">Devolución</span>
+        <span class="st">🔴 Mal</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HALLAZGOS CRÍTICOS -->
 <section>
   <div class="container">
-    <span class="section-num">02 · Hallazgos críticos</span>
-    <h2><em>10 puntos</em> donde el ángulo se diluye</h2>
-    <p class="sub">El motor de RRSS empuja tráfico cualificado al sitio. Estos son los puntos del site donde ese tráfico no se aprovecha al 100% — o donde el posicionamiento "fabricante directo, precio mitad" no se reafirma. Cada uno se ataca en menos de una semana.</p>
+    <span class="section-num">03 · Lo urgente</span>
+    <h2>Las <em>10 cosas</em> que nos hacen perder ventas</h2>
+    <p class="sub">Ordenadas por lo que más sangra. Cada una se puede arreglar en una semana o menos.</p>
 
     <table class="findings">
       <thead>
         <tr>
           <th></th>
-          <th>Nivel</th>
+          <th>Dónde</th>
           <th>Qué pasa</th>
-          <th>Fix</th>
+          <th>Cómo se arregla</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="sev">🔴</td>
           <td class="lvl">Packs</td>
-          <td class="what">Página de Packs muestra 0 productos pese a estar en el home y la nav</td>
-          <td class="fix">Bug de catálogo Shopify. Revisar tag/filtro de la colección. Resolver hoy.</td>
+          <td class="what">La página de Packs sale vacía. Cero productos.</td>
+          <td>Es un fallo de configuración del catálogo en Shopify. Hay que mirar el tag o filtro de la colección. Se arregla hoy.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">Trust</td>
-          <td class="what">"30 noches de prueba" choca con política: cliente paga 50€ devolución; almohadas no admiten devolución (FAQ dice lo contrario)</td>
-          <td class="fix">Decidir: A) cubrir devolución del primer colchón (estándar Emma); B) reescribir UVP honesta ("cambio fácil por 50€"). Unificar FAQ + política.</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Devolución</td>
+          <td class="what">Decimos "30 noches de prueba" pero el cliente paga 50€ para devolver, y las almohadas no se pueden devolver pese a que la FAQ dice que sí.</td>
+          <td>Dos opciones: a) cubrimos la devolución del primer colchón (lo hace Emma), b) reescribimos la promesa para que diga la verdad ("cambio fácil por 50€"). Y en almohadas, unificar FAQ + política.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">PDP Colchón</td>
-          <td class="what">Selector de talla = dropdown con 29 opciones. El cliente no escanea menús así.</td>
-          <td class="fix">Selector visual en 2 pasos: ancho (botones) → largo (botones). Precio dinámico al lado.</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Ficha colchón</td>
+          <td class="what">Para elegir la talla hay un desplegable con 29 medidas. La gente se atasca y se va.</td>
+          <td>Dos pasos con botones grandes: primero el ancho (80, 90, 105, 135, 150, 180, 200), luego el largo (180, 190, 200). El precio se actualiza al lado.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">PDP + Carrito</td>
-          <td class="what">Cero order bump dinámico. Solo carrusel estático "Complementa tu pedido".</td>
-          <td class="fix">Checkbox sobre "Agregar al carrito": <em>"☑ Añade protector TENCEL +19€"</em>. Take-rate 25-40%, +20€ AOV.</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Ficha + Carrito</td>
+          <td class="what">No le ofrecemos al cliente añadir extras antes de pagar. Solo hay un carrusel estático de "Complementa tu pedido" que casi nadie ve.</td>
+          <td>Una casilla bien visible encima del botón de comprar: <em>"☑ Añade el protector TENCEL por 19€ (te llevas 8€ de descuento)"</em>. La marca entre el 25 y 40% de la gente. Son +20€ de ticket medio.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">Homepage</td>
-          <td class="what">H1 = "Rebajas de Primavera". El home no recoge el ángulo que vende en RRSS (anti-tienda, fabricante directo, precio mitad). La rebaja es una promo más, no diferenciación.</td>
-          <td class="fix">H1 que extiende el ángulo de RRSS al site: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar por dormir bien."</em> · <em>"Fabricamos colchones desde 1998. Los vendemos sin tienda en medio."</em> Sub que cuantifica: <em>"Lo que en una tienda física cuesta 800€, en Dormideo cuesta 400€"</em>. CTA único: quiz "Encuentra tu colchón en 30 segundos".</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Home</td>
+          <td class="what">El titular dice "Rebajas de Primavera". Pero en RRSS lo que peta es <strong>"sin tiendas, precio mitad"</strong>. La web no recoge nada de eso.</td>
+          <td>Cambiar el titular del home para decir lo mismo que decimos en TikTok: <em>"El mismo colchón que en la tienda. La mitad de precio."</em> · <em>"Sin tiendas en medio. Sin sobrepagar."</em> · <em>"Fabricamos colchones desde 1998. Los vendemos sin tienda en medio."</em> Y debajo: <em>"Lo que en una tienda física cuesta 800€, en Dormideo cuesta 400€"</em>.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="sev">🔴</td>
           <td class="lvl">Ropa de cama</td>
-          <td class="what">Categoría con solo 4 productos. Sin sábanas, sin nórdicos, sin edredones.</td>
-          <td class="fix">Roadmap de 8 SKUs en 90 días (sábanas algodón, TENCEL, nórdico, fundas, toppers). Bundle "Vístelo completo" en PDP colchón.</td>
+          <td class="what">Solo tenemos 4 productos en toda la sección. Sin juegos de sábanas, sin nórdicos, sin edredones. La gente que compra colchón se gastaría 80-120€ extra en textil y no encuentra qué llevarse.</td>
+          <td>Plan de catálogo: 8 productos nuevos en 90 días (sábanas algodón en 3 colores, sábanas TENCEL premium, nórdico 4 estaciones, fundas nórdicas, 2 toppers). Y crear un pack "Vístelo completo" dentro de la ficha del colchón.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="sev">🔴</td>
           <td class="lvl">Carrito</td>
-          <td class="what">No reafirma garantía / envío / 30 noches. No tiene barra de progreso a regalo.</td>
-          <td class="fix">Tira de 5 iconos UVPs + barra: <em>"Te faltan 47€ para llevarte una funda GRATIS"</em>.</td>
+          <td class="what">Cuando alguien llega al carrito ya casi compra, pero ahí no le recordamos nada: ni 30 noches, ni envío rápido, ni garantía. Tampoco hay barra de "te falta X para regalo".</td>
+          <td>Debajo del resumen, una tira con los 5 iconos clave (30 noches, fábrica, 24/72h, garantía, financiación). Y arriba una barra: <em>"Te faltan 47€ para llevarte una funda gratis"</em>.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">PLP Colchones</td>
-          <td class="what">19 productos sin jerarquía + filtros por firmeza 30-100 (el cliente no sabe qué firmeza necesita)</td>
-          <td class="fix">3 héroes etiquetados arriba (Best seller / Premium / Entrada). Filtros por <strong>problema</strong>: espalda · cervicales · calor · peso pareja.</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Listado colchones</td>
+          <td class="what">19 colchones juntos sin que se entienda cuál elegir. Los filtros son por firmeza del 30 al 100 — la gente no sabe qué firmeza quiere, sabe que le duele la espalda.</td>
+          <td>Arriba del listado, 3 colchones destacados con etiqueta (Más vendido / Premium / Más barato). Filtros traducidos a lo que el cliente busca: dolor de espalda / cervicales / calor / peso pareja.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
+          <td class="sev">🔴</td>
           <td class="lvl">Almohadas</td>
-          <td class="what">PLP sin filtros por tipo (cervical/viscoelástica/transpirable). PDP sin pack 2× pese a que se compran en pareja.</td>
-          <td class="fix">Chips de filtro en PLP. Pack 2× en cada PDP: <em>"1× 99€ / 2× 169€ (ahorras 29€)"</em>.</td>
+          <td class="what">El listado no tiene filtros por tipo (cervical, viscoelástica, fresca), y las fichas no ofrecen llevarse 2 — pese a que la mayoría las compra en pareja (cama de matrimonio).</td>
+          <td>Botones de filtro arriba del listado (Para dormir de lado / Boca arriba / Cervicales / Frescas). En cada ficha: <em>"1 unidad 99€ · 2 unidades 169€ (ahorras 29€)"</em>.</td>
         </tr>
         <tr>
-          <td class="sev crit" data-sev="🔴 Crítico">🔴</td>
-          <td class="lvl">Cross-site</td>
-          <td class="what">Reglas inconsistentes: "Envío Prime GRATIS" en colchón vs. "Envío gratis a partir de 60€" en protector. El Judge nota lo que no cuadra.</td>
-          <td class="fix">Una regla única, comunicada igual en todo el site.</td>
+          <td class="sev">🔴</td>
+          <td class="lvl">Todo el site</td>
+          <td class="what">En la ficha de colchón pone "Envío Prime GRATIS" y en la ficha del protector pone "Envío gratis a partir de 60€". El cliente se queda con la duda de cuál es la regla real.</td>
+          <td>Una sola regla en todo el site, contada igual en todas partes.</td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- HALLAZGOS MEDIOS -->
 <section>
   <div class="container">
-    <span class="section-num">03 · Hallazgos medios</span>
-    <h2>Mejoras de <em>siguiente capa</em></h2>
-    <p class="sub">No mueven la aguja como los críticos. Suman al combo. Atacar después de las 10 anteriores.</p>
+    <span class="section-num">04 · Lo importante pero menos urgente</span>
+    <h2>Cosas que también suman</h2>
+    <p class="sub">No nos hacen perder ventas como las de arriba, pero las atacamos después.</p>
 
     <table class="findings">
       <thead>
         <tr>
           <th></th>
-          <th>Nivel</th>
+          <th>Dónde</th>
           <th>Qué pasa</th>
-          <th>Fix</th>
+          <th>Cómo se arregla</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">Homepage</td>
-          <td class="what">Hero image es render 3D frío en dormitorio vacío. No emociona.</td>
-          <td class="fix">A/B test: render vs. foto real de persona descansando + corte transversal de capas.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Home</td>
+          <td class="what">La foto principal es un render 3D del colchón en una habitación vacía. Es frío, no transmite nada.</td>
+          <td>Probar a cambiarla por una persona descansando, o por un corte del colchón que enseñe las capas.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">Homepage</td>
-          <td class="what">Sin popup exit-intent. Tráfico Meta se va sin email.</td>
-          <td class="fix">Exit-intent con cupón 30€ + opt-out clever: <em>"No, prefiero seguir durmiendo mal"</em>.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Home</td>
+          <td class="what">No tenemos popup de "antes de irte". Toda la gente que viene de Meta y rebota se va sin que pillemos su email.</td>
+          <td>Popup cuando el ratón intenta cerrar la pestaña: <em>"Antes de irte — 30€ de descuento en tu primer colchón"</em>. Y el botón de "no" con gracia: <em>"No, prefiero seguir durmiendo mal"</em>.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">PDP Colchón</td>
-          <td class="what">Garantía contradictoria: "3 años" en cabecera, "36 meses" en detalle. Estándar mercado son 10 años.</td>
-          <td class="fix">Unificar a "10 años de garantía + 30 noches de prueba".</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Ficha colchón</td>
+          <td class="what">En un sitio dice "3 años de garantía" y en otro "36 meses". Y para colchones lo normal en el mercado son 10 años.</td>
+          <td>Unificar a "10 años de garantía + 30 noches de prueba".</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">PDP Sofá Lea</td>
-          <td class="what">Anchoring del €1.645 ("precio en tienda física convencional") no es verificable.</td>
-          <td class="fix">Comparativa honesta: <em>"Sofá-cama equivalente en Maisons du Monde: 1.200€. Precio fábrica: 799€"</em>.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Ficha Sofá Lea</td>
+          <td class="what">El precio tachado pone "Precio en tienda física convencional: 1.645€". Como nadie puede comprobarlo, suena a invento.</td>
+          <td>Cambiarlo por una comparación real: <em>"Sofá-cama equivalente en Maisons du Monde: 1.200€. Nuestro precio: 799€"</em>.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">PDP Sofá Lea</td>
-          <td class="what">Garantía 3 años en sofá premium. IKEA da 10 años.</td>
-          <td class="fix">Subir estructura a 5-10 años (es columna, no tapizado).</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Ficha Sofá Lea</td>
+          <td class="what">3 años de garantía en un sofá de 799€ es poco. IKEA da 10 años.</td>
+          <td>Subir la garantía estructural a 5 o 10 años (es la columna del sofá, no el tapizado).</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">PLP Colchones</td>
-          <td class="what">Todo al -50/-60%. El descuento universal compite con el ángulo "precio fábrica": si todo está "rebajado", el precio percibido como "normal" deja de existir.</td>
-          <td class="fix">Reposicionar: el precio mostrado es <strong>"precio fábrica"</strong>, el tachado es <strong>"precio en tienda física equivalente"</strong>. Misma lógica que ya usa el PDP de Sofá Lea — extender al catálogo de colchones.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Listado colchones</td>
+          <td class="what">Todos los colchones están al -50% / -60%. Si todo está rebajado siempre, deja de ser rebaja y el "precio normal" deja de existir en la cabeza del cliente.</td>
+          <td>Etiquetar el precio tachado como <strong>"precio en tienda física"</strong> y el precio nuestro como <strong>"precio fábrica"</strong>. Es lo que ya hace la ficha del Sofá Lea — extenderlo a colchones.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">Almohadas</td>
-          <td class="what">PDP Asana sin selector de altura. SKU único sin explicitar.</td>
-          <td class="fix">Badge <em>"Una altura. Adaptable a 3 posturas"</em> o añadir variantes modulables.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Almohada Asana</td>
+          <td class="what">No hay donde elegir altura. Si la almohada es de talla única, no lo decimos en ningún sitio.</td>
+          <td>Etiqueta clara: <em>"Una altura. Adaptable a 3 posturas"</em>. O bien añadir variantes si en realidad las hay.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
+          <td class="sev">🟡</td>
           <td class="lvl">Ropa de cama</td>
-          <td class="what">Sin subscribe &amp; save en producto recurrente (sábanas, fundas se reponen cada 12-24m).</td>
-          <td class="fix">Email automático: <em>"Pídelo de nuevo en 18 meses con -10%"</em>.</td>
+          <td class="what">Las sábanas y fundas se reponen cada 12-24 meses. Hoy no avisamos al cliente para que vuelva.</td>
+          <td>Email automático: <em>"Hace 18 meses te llevaste las sábanas — toca reponerlas. Te dejamos un -10%"</em>.</td>
         </tr>
         <tr>
-          <td class="sev mid" data-sev="🟡 Medio">🟡</td>
-          <td class="lvl">Cross-site</td>
-          <td class="what">El PDP de Sofá Lea sí extiende el ángulo anti-tienda con anchoring explícito ("precio en tienda física convencional"). Los PDPs de colchón se quedan en "rebaja %", sin reafirmar el diferenciador competitivo.</td>
-          <td class="fix">Portar a los 5 PDPs de colchón: tachado etiquetado como "precio en tienda física", anchoring honesto (referencia competitiva real), copy con promesa + UGC video.</td>
+          <td class="sev">🟡</td>
+          <td class="lvl">Fichas colchón</td>
+          <td class="what">La ficha del Sofá Lea sí compara contra "precio tienda física". Las fichas de los 5 colchones se quedan en "rebaja %", sin recordar al cliente por qué somos más baratos.</td>
+          <td>Llevar a los 5 colchones lo que ya funciona en Lea: precio tachado etiquetado como "precio en tienda física", comparación honesta, vídeo de cliente real.</td>
         </tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<!-- ROADMAP -->
 <section>
   <div class="container">
-    <span class="section-num">04 · Roadmap</span>
-    <h2>4 semanas para <em>cerrar el grifo</em></h2>
-    <p class="sub">Antes de escalar otro euro en Meta o Google.</p>
+    <span class="section-num">05 · Plan</span>
+    <h2>4 semanas <em>para dejarlo cerrado</em></h2>
+    <p class="sub">Antes de meter más euros en Meta o Google.</p>
 
     <div class="roadmap">
       <div class="week">
         <div class="lbl">Semana 1</div>
-        <div class="name">Cerrar fugas básicas</div>
+        <div class="name">Lo más urgente</div>
         <ul>
-          <li>Reparar página Packs</li>
-          <li>H1 home con ángulo anti-tienda</li>
-          <li>Selector visual de tallas</li>
-          <li>Order bump en PDP + carrito</li>
-          <li>Popup exit-intent</li>
-          <li>Unificar regla envío gratis</li>
+          <li>Arreglar la página de Packs</li>
+          <li>Cambiar el titular del home (anti-tienda)</li>
+          <li>Selector de tallas con botones</li>
+          <li>Casilla de extras antes de pagar</li>
+          <li>Popup de "antes de irte"</li>
+          <li>Una sola regla de envío gratis</li>
         </ul>
       </div>
       <div class="week">
         <div class="lbl">Semana 2</div>
-        <div class="name">Trust &amp; AOV</div>
+        <div class="name">Confianza y ticket</div>
         <ul>
-          <li>Decidir devolución gratis vs. honesta</li>
-          <li>Unificar mensaje almohadas</li>
-          <li>Barra de progreso a regalo</li>
+          <li>Decidir devolución gratis o ser honestos</li>
+          <li>Unificar mensaje de almohadas</li>
+          <li>Barra de "te falta X para regalo"</li>
           <li>Garantía 10 años unificada</li>
-          <li>Bundle en PDP colchón</li>
-          <li>Pack 2× en PDP almohada</li>
+          <li>Pack en la ficha del colchón</li>
+          <li>Pack 2× en almohadas</li>
         </ul>
       </div>
       <div class="week">
         <div class="lbl">Semana 3</div>
-        <div class="name">Filtros &amp; jerarquía</div>
+        <div class="name">Listados</div>
         <ul>
-          <li>3 héroes en PLP Colchones</li>
-          <li>Filtros por problema</li>
-          <li>Filtros chip en PLP Almohadas</li>
-          <li>Quiz finder sobre el grid</li>
-          <li>Trust micro-copy en cards</li>
+          <li>3 colchones destacados arriba</li>
+          <li>Filtros por problema real</li>
+          <li>Filtros por tipo en almohadas</li>
+          <li>Cuestionario "encuentra tu colchón"</li>
+          <li>Tira de confianza en cada producto</li>
         </ul>
       </div>
       <div class="week">
         <div class="lbl">Semana 4</div>
-        <div class="name">Extender el ángulo</div>
+        <div class="name">Llevar el modelo a todo</div>
         <ul>
-          <li>Tachado "precio tienda física" en 5 PDPs colchón</li>
-          <li>UGC video en cada PDP</li>
-          <li>Bundle "Vístelo completo"</li>
-          <li>A/B test hero del home</li>
-          <li>Hoja ruta catálogo textil</li>
+          <li>"Precio tienda física" en 5 fichas colchón</li>
+          <li>Vídeo de cliente en cada ficha</li>
+          <li>Pack "Vístelo completo"</li>
+          <li>Test A/B del home</li>
+          <li>Plan de catálogo de ropa de cama</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- METHOD -->
-<section>
-  <div class="container">
-    <span class="section-num">05 · Método</span>
-    <h2>Cómo se evalúa esto</h2>
-    <div class="method-box">
-      <p>Esta auditoría aplica el método <strong>Billion Dollar Websites</strong> (Dylan Ander), usado para optimizar más de mil millones de dólares en ecommerce. Tres ideas centrales:</p>
-      <p><strong>El Cocodrilo y el Juez.</strong> Cada visitante tiene dos mentes: una rápida e instintiva que compra si reconoce, confía y no se complica; y una lenta y crítica que despierta con cualquier fricción. El trabajo de la web es dejarle el camino libre al cocodrilo y no despertar al juez.</p>
-      <p><strong>Cinco Pilares.</strong> Cada elemento del site pertenece a uno: Oferta · UVPs · Copy · Creative · UI/UX. La auditoría revisa cada nivel contra los cinco.</p>
-      <p><strong>Cuadrantes de Tráfico.</strong> Con el motor de RRSS empujando tráfico cualificado, el techo de crecimiento ya no está en la inversión publicitaria — está en la web. Cada décima de CVR que se recupera convierte directamente el tráfico que ya está pagando trabajo.</p>
     </div>
   </div>
 </section>
@@ -610,7 +565,7 @@
 <footer>
   <div class="container">
     <div class="wm"><b>Josep</b> Cid</div>
-    <div>Auditoría CRO · Dormideo · Mayo 2026</div>
+    <div>Auditoría interna · Dormideo · Mayo 2026</div>
   </div>
 </footer>
 
