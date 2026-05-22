@@ -182,7 +182,7 @@
   }
 
   .roadmap {
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 12px; margin-top: 24px;
   }
   .week {
@@ -245,20 +245,6 @@
     <p class="tldr">
       El ACoS se trabaja desde varios lados (ads, producto, email, operación). Este documento se centra solo en la palanca web. <strong>Las prioridades de abajo están ordenadas por datos reales de Shopify Analytics</strong> (sesiones por landing del 1 ene 2026 al 21 may 2026): donde hay más tráfico y la conversión es comparativamente baja, está la palanca más grande.
     </p>
-    <div class="impact">
-      <div class="impact-chip">
-        <span class="num">−15-20%</span>
-        <span class="lbl">ACoS estimado</span>
-      </div>
-      <div class="impact-chip">
-        <span class="num">+20-40€</span>
-        <span class="lbl">Ticket medio</span>
-      </div>
-      <div class="impact-chip">
-        <span class="num">+10-15%</span>
-        <span class="lbl">Recompra</span>
-      </div>
-    </div>
   </div>
 </header>
 
@@ -266,32 +252,32 @@
   <div class="container">
     <span class="section-num">01 · Cómo estamos por sección</span>
     <h2>De un vistazo</h2>
-    <p class="sub">9 partes de la web revisadas. 3 mal, 5 mejorables, 1 que ya está bien y vale como modelo para el resto.</p>
+    <p class="sub">9 partes de la web revisadas, alineadas con la tabla de hallazgos de abajo.</p>
     <div class="scorecard">
-      <div class="score-cell mid">
+      <div class="score-cell crit">
         <span class="lvl">Sección 1</span>
         <span class="nm">Home</span>
-        <span class="st">🟡 Mejorable</span>
+        <span class="st">🔴 Hipótesis a testar</span>
       </div>
       <div class="score-cell mid">
         <span class="lvl">Sección 2</span>
         <span class="nm">Listado colchones</span>
         <span class="st">🟡 Mejorable</span>
       </div>
-      <div class="score-cell mid">
+      <div class="score-cell crit">
         <span class="lvl">Sección 3a</span>
         <span class="nm">Ficha colchón</span>
-        <span class="st">🟡 Mejorable</span>
-      </div>
-      <div class="score-cell ok">
-        <span class="lvl">Sección 3b</span>
-        <span class="nm">Ficha Sofá Lea</span>
-        <span class="st">🟢 Bien (modelo)</span>
+        <span class="st">🔴 Hipótesis a testar</span>
       </div>
       <div class="score-cell mid">
+        <span class="lvl">Sección 3b</span>
+        <span class="nm">Ficha Sofá Lea</span>
+        <span class="st">🟡 Producto nuevo</span>
+      </div>
+      <div class="score-cell crit">
         <span class="lvl">Sección 4</span>
         <span class="nm">Almohadas</span>
-        <span class="st">🟡 Mejorable</span>
+        <span class="st">🔴 Hipótesis a testar</span>
       </div>
       <div class="score-cell mid">
         <span class="lvl">Sección 5</span>
@@ -306,12 +292,12 @@
       <div class="score-cell crit">
         <span class="lvl">Sección 7</span>
         <span class="nm">Carrito</span>
-        <span class="st">🔴 Mal</span>
+        <span class="st">🔴 Implementación directa</span>
       </div>
       <div class="score-cell crit">
         <span class="lvl">Sección 8</span>
         <span class="nm">Devolución</span>
-        <span class="st">🔴 Mal</span>
+        <span class="st">🔴 Decisión + cambio</span>
       </div>
     </div>
   </div>
@@ -320,7 +306,7 @@
 <section>
   <div class="container">
     <span class="section-num">02 · Lo urgente</span>
-    <h2>Las <em>7 cosas</em> que nos disparan el ACoS</h2>
+    <h2><em>7 cosas</em> a testar que podrían bajar el ACoS</h2>
     <p class="sub">Ordenadas por dos cosas: cuánta gente pasa por ahí, y de esa gente, cuánta llega a checkout. Cifras de Shopify Analytics (sesiones por landing, 1 ene → 21 may 2026). Donde hay mucho tráfico y poca gente llega a comprar, está la palanca grande. Lo demás (Packs, listado colchones, ropa de cama) ha bajado a "menos urgente" porque apenas pasa gente por ahí — aunque se arregle, el ACoS global casi no se nota.</p>
 
     <div class="findings-list">
@@ -445,7 +431,7 @@
   <div class="container">
     <span class="section-num">03 · Lo importante pero menos urgente</span>
     <h2>Cosas que también suman</h2>
-    <p class="sub">Mismo criterio: hipótesis basadas en lo que se ve en la web. No mueven la aguja como las de arriba, las atacamos después.</p>
+    <p class="sub">Mismo criterio: hipótesis basadas en lo que se ve en la web. Suman menos que las de arriba, las atacamos después.</p>
 
     <div class="findings-list">
 
@@ -584,51 +570,47 @@
 <section>
   <div class="container">
     <span class="section-num">04 · Plan</span>
-    <h2>4 semanas <em>para bajar el ACoS</em></h2>
-    <p class="sub">Cada bloque ataca un sitio donde se nos cae gente o donde no aprovechamos al cliente que ya hemos pagado. Todo sin tocar campañas.</p>
+    <h2>Tres frentes <em>en paralelo</em></h2>
+    <p class="sub">No es un calendario semana a semana — los tests A/B necesitan 2-4 semanas cada uno para ser significativos, las decisiones estratégicas requieren dirección. Tres tipos de trabajo distintos, cada uno con su ritmo.</p>
 
     <div class="roadmap">
       <div class="week">
-        <div class="lbl">Semana 1</div>
-        <div class="name">Atacar el volumen</div>
+        <div class="lbl">Frente 1</div>
+        <div class="name">Tests con tráfico</div>
         <ul>
-          <li>Test A/B titular home (650k sesiones)</li>
-          <li>Comparar Plus Hybrid Top vs City Luxury</li>
-          <li>Selector de tallas con botones (piloto en una ficha)</li>
-          <li>Bloque "Añade antes de pagar" en el cajón del carrito</li>
+          <li>A/B titular home (anti-tienda vs actual)</li>
+          <li>Comparar Plus Hybrid Top vs City Luxury y portar diferencias</li>
+          <li>A/B selector de talla (dropdown / botones / 2 pasos)</li>
+          <li>Popup exit-intent en home</li>
+          <li><strong>Ritmo:</strong> 2-4 semanas por test para significancia. Hacerlos en serie, no en paralelo, para no confundir efectos.</li>
         </ul>
       </div>
       <div class="week">
-        <div class="lbl">Semana 2</div>
-        <div class="name">Bajar a las almohadas</div>
+        <div class="lbl">Frente 2</div>
+        <div class="name">Decisiones estratégicas</div>
         <ul>
-          <li>Sesión específica Asana (fuente, copy devolución)</li>
-          <li>Pack 2× en cada ficha de almohada</li>
-          <li>Tira de UVPs en el cajón del carrito</li>
-          <li>Monitor evolución semanal Sofá Lea</li>
-        </ul>
-      </div>
-      <div class="week">
-        <div class="lbl">Semana 3</div>
-        <div class="name">Confianza y captura</div>
-        <ul>
-          <li>Decidir devolución colchón (gratis o honesta)</li>
-          <li>Unificar FAQ vs política en almohadas</li>
-          <li>Unificar mensaje de garantía colchón</li>
-          <li>Popup exit-intent en el home</li>
-        </ul>
-      </div>
-      <div class="week">
-        <div class="lbl">Semana 4</div>
-        <div class="name">Catálogo y tests</div>
-        <ul>
-          <li>Vídeo de cliente real en cada ficha</li>
-          <li>Pack "Vístelo completo" con SKUs disponibles</li>
-          <li>A/B del home con variantes anti-tienda</li>
+          <li>Política de devolución colchón: gratis o honesta</li>
+          <li>Política de devolución almohadas (FAQ vs realidad)</li>
+          <li>Garantía colchón: duración real y cómo comunicarla</li>
           <li>Reactivar SKUs caídos en ropa de cama</li>
+          <li><strong>Ritmo:</strong> requieren dirección, no se hacen "esta semana". Acordar criterios y delegar a quien decide.</li>
+        </ul>
+      </div>
+      <div class="week">
+        <div class="lbl">Frente 3</div>
+        <div class="name">Implementación directa</div>
+        <ul>
+          <li>Casilla extras en el cajón del carrito</li>
+          <li>Tira de UVPs en el cajón del carrito</li>
+          <li>Incentivo pack 2× visible en fichas de almohada</li>
+          <li>Unificar copy de garantía (3 años vs 36 meses)</li>
+          <li>Reescribir devolución almohadas (visible, no escondida)</li>
+          <li><strong>Ritmo:</strong> cambios de copy + bloques nuevos. Días, no semanas. No requieren test previo porque arreglan incongruencias o suman piezas que faltan.</li>
         </ul>
       </div>
     </div>
+
+    <p class="sub" style="margin-top: 32px;">El Sofá Lea queda fuera del plan inmediato (producto nuevo, conviene monitorizar evolución semanal antes de tocar). Packs queda fuera por volumen residual.</p>
   </div>
 </section>
 
